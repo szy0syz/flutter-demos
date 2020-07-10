@@ -1,5 +1,14 @@
 # flutter-demos
 
+## Menus
+
+- flutter_two_you
+- flutter_sqlite_todos
+- flutter_ctrip
+- flutter_bmi_calculator
+- flutter_clima
+- flutter_flash_chat
+
 ## Notes
 
 - 代码片段快捷前缀：`stl` - `Flutter stateless widget` or `Flutter stateful widget`
