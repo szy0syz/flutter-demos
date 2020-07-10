@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sqlite_todos/screens/add_task_screen.dart';
 
 class TodoListScreen extends StatefulWidget {
   @override
@@ -32,7 +33,8 @@ class _TodoListScreenState extends State<TodoListScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print('Navigate to add task screen');
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => AddTaskScreen()));
         },
         child: Icon(Icons.add),
         backgroundColor: Theme.of(context).primaryColor,
