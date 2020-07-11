@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Todo List',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: TodoListScreen(),

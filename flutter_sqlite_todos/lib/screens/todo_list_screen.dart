@@ -49,7 +49,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                       : TextDecoration.lineThrough),
             ),
             trailing: Checkbox(
-              value: false,
+              value: task.status == 1,
               activeColor: Theme.of(context).primaryColor,
               onChanged: (value) {
                 task.status = value ? 1 : 0;
@@ -59,9 +59,11 @@ class _TodoListScreenState extends State<TodoListScreen> {
               },
             ),
             onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => AddTaskScreen(_updateTaskList, task))),
+              context,
+              MaterialPageRoute(
+                builder: (_) => AddTaskScreen(_updateTaskList, task),
+              ),
+            ),
           ),
           Divider(),
         ],

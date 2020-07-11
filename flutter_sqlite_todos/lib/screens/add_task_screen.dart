@@ -59,10 +59,15 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     }
   }
 
+  _delete() {
+    DatabaseHelper.instance.deleteTask(widget.task.id);
+    widget.updateTaskList();
+    Navigator.pop(context);
+  }
+
   _submit() {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      print('$_title, $_date, $_priority');
 
       /// 插入数据库
       Task task = Task(title: _title, date: _date, priority: _priority);
@@ -70,6 +75,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         task.status = 0;
         DatabaseHelper.instance.insertTask(task);
       } else {
+        task.id = widget.task.id;
         task.status = widget.task.status;
         DatabaseHelper.instance.updateTask(task);
       }
@@ -99,7 +105,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
                 SizedBox(height: 20.0),
                 Text(
-                  'Add Task',
+                  widget.task == null ? 'Add Task' : 'Edit Task',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 40.0,
@@ -193,7 +199,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           child: FlatButton(
                             onPressed: _submit,
                             child: Text(
-                              'Add',
+                              widget.task == null ? 'Add' : 'Edit',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.0,
@@ -201,6 +207,27 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                             ),
                           ),
                         ),
+                        widget.task != null
+                            ? Container(
+                                margin: EdgeInsets.symmetric(vertical: 20.0),
+                                height: 60.0,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).primaryColor,
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                child: FlatButton(
+                                  onPressed: _delete,
+                                  child: Text(
+                                    'Delete',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : SizedBox.shrink()
                       ],
                     ))
               ],
