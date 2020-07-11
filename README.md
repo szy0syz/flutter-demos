@@ -39,6 +39,58 @@ class ReusableCard extends StatelessWidget {
 ![layout1](preview/layout1.png)
 
 - 这里不是 `js` 了，该用枚举就用枚举吧
+- dart 的三元操作符
+
+```dart
+/// 重构前
+Color maleCardColour = inactiveCardColour;
+  Color femaleCardColour = inactiveCardColour;
+
+  /// 1 = male, 2 = female
+  void updateColour(Gender selectedGender) {
+    /// male card pressed
+    if (selectedGender == Gender.male) {
+      if (maleCardColour == inactiveCardColour) {
+        maleCardColour = activeCardColour;
+        femaleCardColour = inactiveCardColour;
+      } else {
+        maleCardColour = inactiveCardColour;
+      }
+    }
+
+    if (selectedGender == Gender.female) {
+      if (femaleCardColour == inactiveCardColour) {
+        femaleCardColour = activeCardColour;
+        maleCardColour = inactiveCardColour;
+      } else {
+        femaleCardColour = inactiveCardColour;
+      }
+    }
+  }
+}
+
+/// ----------------
+
+/// 重构后
+Expanded(
+  child: GestureDetector(
+    onTap: () {
+      setState(() {
+        selectedGender = Gender.female;
+      });
+    },
+    child: ReusableCard(
+      colour: selectedGender == Gender.female
+          ? activeCardColour
+          : inactiveCardColour,
+      cardChild: IconContent(
+        icon: FontAwesomeIcons.venus,
+        label: 'FEMALE',
+      ),
+    ),
+  ),
+),
+```
 
 ```dart
 /// 原来是这样初始化 state
