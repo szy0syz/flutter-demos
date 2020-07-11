@@ -38,6 +38,8 @@ class ReusableCard extends StatelessWidget {
 
 ![layout1](preview/layout1.png)
 
+- 这里不是 `js` 了，该用枚举就用枚举吧
+
 ```dart
 /// 原来是这样初始化 state
 @override
