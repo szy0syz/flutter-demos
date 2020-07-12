@@ -161,3 +161,51 @@ class Task {
   }
 }
 ```
+
+- **鉴于 `dart` 的特殊声明式写法，记得把可重用的声明变量统一存放在 `contants.dart` 目录，统一管理了！**
+  - 吐槽: `dart` 的声明竟然不需要 `export` 导出，随便搞！
+- Flutter 中的 flex 布局之 baseline
+  - 不加 `textBaseline` 属性就报错了
+
+```dart
+Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  crossAxisAlignment: CrossAxisAlignment.baseline,
+  textBaseline: TextBaseline.alphabetic,
+  children: <Widget>[
+    Text('180', style: numberTextStyle),
+    Text('cm', style: labelTextStyle),
+  ],
+)
+```
+
+- `flutter` 中如何改一个标准组件呢？“套壳”
+  - 例如 Slider 组件要修改拖拽的圆点：`SliderTheme`
+- `flutter` 中觉得 `FloatingActionButton` 不满意，自己搞一个呗
+  - 发现它只是对 `RawMaterialButton` 包了一层(重写)，那我也就这样搞
+  - 发现有些属性搞不定，去源码里翻翻，把需要的属性直接抄过来即可
+- 来个封装的组件
+
+```dart
+class RoundIconButton extends StatelessWidget {
+  RoundIconButton({@required this.icon, @required this.onPressed});
+
+  final IconData icon;
+  final Function onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(icon),
+      onPressed: onPressed,
+      elevation: 6,
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      shape: CircleBorder(),
+      fillColor: Color(0xFF4C4F5E),
+    );
+  }
+}
+```
