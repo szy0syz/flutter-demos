@@ -1,5 +1,7 @@
 # flutter-demos
 
+> Some demos to learn dart & flutter.
+
 ## Menus
 
 - 📝　flutter_two_you
