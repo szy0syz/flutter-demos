@@ -10,6 +10,7 @@
 - flutter_flash_chat
 
 ![01](preview/todo_list.gif)
+![02](preview/bmi.gif)
 
 ## Notes
 
