@@ -9,7 +9,7 @@
 - 📝　flutter_ctrip
 - 📝 flutter_dicee
 - 🌀　flutter_mi_card
-- ✅ flutter_xylophone
+- ✅　flutter_xylophone 🎹
 - ✅　flutter_bmi_calculator
 - 🌀　flutter_clima
 - 🌀　flutter_flash_chat
@@ -230,3 +230,7 @@ class RoundIconButton extends StatelessWidget {
   }
 }
 ```
+
+- Class
+
+![class](preview/class.jpg)
