@@ -7,6 +7,7 @@
 - 📝　flutter_two_you
 - ✅　flutter_sqlite_todos
 - 📝　flutter_ctrip
+- 📝 flutter_dicee
 - 🌀　flutter_mi_card
 - ✅　flutter_bmi_calculator
 - 🌀　flutter_clima
@@ -14,11 +15,27 @@
 - 🌀　flutter_firebase_instagram
 - 🌀　flutter_bloc_crypto_app
 - 🌀　flutter_firebase_realtime_chat
+- 🌀　flutter_focused-pop-up_menu
 
 ![01](preview/todo_list.gif)
 ![02](preview/bmi.gif)
 
-## Notes
+## flutter_dicee
+
+### Notes1
+
+- 不要在赤裸裸的使用 Image 组件，鬼知道它又多大，大多了就出现故障栏，要用 `Expanded` 包一下
+- `Expanded` 里可以使用 `flex:2` 属性，设置它在当前行占据的比例，和 CSS-flex 里的属性类似
+  - 如果都设 `flex:1` 就是一样大
+  - 怪求不得，看了下继承关系：[`Object > DiagnosticableTree > Widget > ProxyWidget > ParentDataWidget<FlexParentData > Flexible >  Expanded`](https://api.flutter.dev/flutter/widgets/Expanded-class.html)
+- 有些时候组件自带一些属性则可以省略自己写，如 `FlatButton` 自带 `padding` 属性，我们则不需要再写
+  - 怎么看这个组件原生带了额外属性，调试工具里搜关键字吧
+
+![flex1](preview/flex1.jpg)
+
+## flutter_bmi_calculator
+
+### Notes2
 
 - 代码片段快捷前缀：`stl` - `Flutter stateless widget` or `Flutter stateful widget`
 - vscode-flutter 套壳快捷键：`cmd + .`，好用到耐不住嘛
