@@ -9,6 +9,7 @@
 - 📝　flutter_ctrip
 - 📝 flutter_dicee
 - 🌀　flutter_mi_card
+- ✅ flutter_xylophone
 - ✅　flutter_bmi_calculator
 - 🌀　flutter_clima
 - 🌀　flutter_flash_chat
@@ -18,13 +19,11 @@
 - 🌀　flutter_focused-pop-up_menu
 
 ![00](preview/dice.gif)
-![01](preview/todo_list.gif)
-![02](preview/bmi.gif)
+![01](preview/xylophone.gif)
+![04](preview/todo_list.gif)
+![05](preview/bmi.gif)
 
-
-## flutter_dicee
-
-### Notes1
+### Notes
 
 - 不要在赤裸裸的使用 Image 组件，鬼知道它又多大，大多了就出现故障栏，要用 `Expanded` 包一下
 - `Expanded` 里可以使用 `flex:2` 属性，设置它在当前行占据的比例，和 CSS-flex 里的属性类似
@@ -34,10 +33,6 @@
   - 怎么看这个组件原生带了额外属性，调试工具里搜关键字吧
 
 ![flex1](preview/flex1.jpg)
-
-## flutter_bmi_calculator
-
-### Notes2
 
 - 代码片段快捷前缀：`stl` - `Flutter stateless widget` or `Flutter stateful widget`
 - vscode-flutter 套壳快捷键：`cmd + .`，好用到耐不住嘛
@@ -74,26 +69,26 @@ Color maleCardColour = inactiveCardColour;
 
   /// 1 = male, 2 = female
   void updateColour(Gender selectedGender) {
-    /// male card pressed
-    if (selectedGender == Gender.male) {
-      if (maleCardColour == inactiveCardColour) {
-        maleCardColour = activeCardColour;
-        femaleCardColour = inactiveCardColour;
-      } else {
-        maleCardColour = inactiveCardColour;
-      }
+  /// male card pressed
+  if (selectedGender == Gender.male) {
+    if (maleCardColour == inactiveCardColour) {
+      maleCardColour = activeCardColour;
+      femaleCardColour = inactiveCardColour;
+    } else {
+      maleCardColour = inactiveCardColour;
     }
+  }
 
-    if (selectedGender == Gender.female) {
-      if (femaleCardColour == inactiveCardColour) {
-        femaleCardColour = activeCardColour;
-        maleCardColour = inactiveCardColour;
-      } else {
-        femaleCardColour = inactiveCardColour;
-      }
+  if (selectedGender == Gender.female) {
+    if (femaleCardColour == inactiveCardColour) {
+      femaleCardColour = activeCardColour;
+      maleCardColour = inactiveCardColour;
+    } else {
+      femaleCardColour = inactiveCardColour;
     }
   }
 }
+```
 
 /// ----------------
 
