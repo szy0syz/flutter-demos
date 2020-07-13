@@ -2,16 +2,16 @@
 
 ## Menus
 
-- 📝 flutter_two_you
-- ✅ flutter_sqlite_todos
-- 📝 flutter_ctrip
-- 🌀 flutter_mi_card
-- ✅ flutter_bmi_calculator
-- 🌀 flutter_clima
-- 🌀 flutter_flash_chat
-- 🌀 flutter_firebase_instagram
-- 🌀 flutter_bloc_crypto_app
-- 🌀 flutter_firebase_realtime_chat
+- 📝　flutter_two_you
+- ✅　flutter_sqlite_todos
+- 📝　flutter_ctrip
+- 🌀　flutter_mi_card
+- ✅　flutter_bmi_calculator
+- 🌀　flutter_clima
+- 🌀　flutter_flash_chat
+- 🌀　flutter_firebase_instagram
+- 🌀　flutter_bloc_crypto_app
+- 🌀　flutter_firebase_realtime_chat
 
 ![01](preview/todo_list.gif)
 ![02](preview/bmi.gif)
