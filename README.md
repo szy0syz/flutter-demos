@@ -26,6 +26,7 @@
 ![04](preview/todo_list.gif)
 ![05](preview/bmi.gif)
 ![06](preview/verify.gif)
+![06](preview/blm_onboarding.gif)
 
 ### Notes
 
@@ -244,7 +245,7 @@ class RoundIconButton extends StatelessWidget {
   - 内存
 
 ```dart
-/// 需要确认的值  
+/// 需要确认的值
 final dt = DateTime.now();  // ✅
 const dt = DateTime.now();  // ❌
 
@@ -259,7 +260,7 @@ final List fls1 = [11,22,33];
 final List fls2 = [11,22,33];
 print(identical(fls1, fls2));  // false
 
-const List cls1 = [11,22,33];  
+const List cls1 = [11,22,33];
 const List cls2 = [11,22,33];
 print(identical(fls1, fls2));  // true
 ```
