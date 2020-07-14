@@ -92,7 +92,6 @@ Color maleCardColour = inactiveCardColour;
     }
   }
 }
-```
 
 /// ----------------
 
@@ -238,3 +237,30 @@ class RoundIconButton extends StatelessWidget {
 - Class
 
 ![class](preview/class.jpg)
+
+- `Dart` 中 `const` 和 `final` 的区别
+  - 需要确认的值
+  - 不可变性的传递
+  - 内存
+
+```dart
+/// 需要确认的值  
+final dt = DateTime.now();  // ✅
+const dt = DateTime.now();  // ❌
+
+/// 不可变性的传递
+final List ls1 = [11,22,33];
+const List ls2 = [11,22,33];
+ls1[1] = 44;  // ✅
+ls2[1] = 44;  // ❌
+
+/// 内存冲的重复创建
+final List fls1 = [11,22,33];
+final List fls2 = [11,22,33];
+print(identical(fls1, fls2));  // false
+
+const List cls1 = [11,22,33];  
+const List cls2 = [11,22,33];
+print(identical(fls1, fls2));  // true
+```
+
