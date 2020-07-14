@@ -26,18 +26,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<Widget> scoreKeeper = [
-    Icon(Icons.check, color: Colors.green),
-    Icon(Icons.close, color: Colors.red),
-    Icon(Icons.close, color: Colors.red),
-    Icon(Icons.close, color: Colors.red),
-    Icon(Icons.check, color: Colors.green),
-  ];
-
-  Question q1 = Question(
-    q: 'You can lead a cow down stairs but not up stairs.',
-    a: false,
-  );
+  List<Widget> scoreKeeper = [];
 
   List<Question> questionBank = [
     Question(
@@ -51,6 +40,10 @@ class _QuizPageState extends State<QuizPage> {
     Question(
       q: 'A slug\'s blood is green.',
       a: true,
+    ),
+    Question(
+      q: 'You can lead a cow down stairs but not up stairs.',
+      a: false,
     ),
   ];
 
@@ -94,10 +87,14 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 // bool correctAnswer = questionBank[questionNumber].questionAnswer;
                 setState(() {
+                  Widget s;
+                  if (questionBank[questionNumber].questionAnswer == true) {
+                    s = Icon(Icons.check, color: Colors.green);
+                  } else {
+                    s = Icon(Icons.close, color: Colors.red);
+                  }
+                  scoreKeeper.add(s);
                   questionNumber++;
-                  scoreKeeper.add(
-                    Icon(Icons.check, color: Colors.green),
-                  );
                 });
               },
             ),
@@ -117,10 +114,14 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
+                  Widget s;
+                  if (questionBank[questionNumber].questionAnswer == false) {
+                    s = Icon(Icons.check, color: Colors.green);
+                  } else {
+                    s = Icon(Icons.close, color: Colors.red);
+                  }
+                  scoreKeeper.add(s);
                   questionNumber++;
-                  scoreKeeper.add(
-                    Icon(Icons.close, color: Colors.red),
-                  );
                 });
               },
             ),

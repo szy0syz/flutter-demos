@@ -10,6 +10,7 @@
 - ✅　flutter_dicee
 - 🌀　flutter_mi_card
 - ✅　flutter_xylophone 🎹
+- ✅　flutter_quizzler
 - ✅　flutter_bmi_calculator
 - ✅　flutter_phone_verification
 - 🌀　flutter_clima
@@ -21,6 +22,7 @@
 
 ![00](preview/dice.gif)
 ![01](preview/xylophone.gif)
+![02](preview/quizzler.gif)
 ![04](preview/todo_list.gif)
 ![05](preview/bmi.gif)
 ![06](preview/verify.gif)
