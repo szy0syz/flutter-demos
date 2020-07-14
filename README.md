@@ -13,6 +13,7 @@
 - ✅　flutter_quizzler
 - ✅　flutter_bmi_calculator
 - ✅　flutter_phone_verification
+- ✅　flutter_blm_onboarding
 - 🌀　flutter_clima
 - 🌀　flutter_flash_chat
 - 🌀　flutter_firebase_instagram
@@ -242,7 +243,7 @@ class RoundIconButton extends StatelessWidget {
 - `Dart` 中 `const` 和 `final` 的区别
   - 需要确认的值
   - 不可变性的传递
-  - 内存
+  - 内存中的重复创建
 
 ```dart
 /// 需要确认的值
@@ -255,7 +256,7 @@ const List ls2 = [11,22,33];
 ls1[1] = 44;  // ✅
 ls2[1] = 44;  // ❌
 
-/// 内存冲的重复创建
+/// 内存中的重复创建
 final List fls1 = [11,22,33];
 final List fls2 = [11,22,33];
 print(identical(fls1, fls2));  // false
