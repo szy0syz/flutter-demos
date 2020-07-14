@@ -7,10 +7,11 @@
 - 📝　flutter_two_you
 - ✅　flutter_sqlite_todos
 - 📝　flutter_ctrip
-- 📝 flutter_dicee
+- ✅　flutter_dicee
 - 🌀　flutter_mi_card
 - ✅　flutter_xylophone 🎹
 - ✅　flutter_bmi_calculator
+- ✅　flutter_phone_verification
 - 🌀　flutter_clima
 - 🌀　flutter_flash_chat
 - 🌀　flutter_firebase_instagram
@@ -22,6 +23,7 @@
 ![01](preview/xylophone.gif)
 ![04](preview/todo_list.gif)
 ![05](preview/bmi.gif)
+![06](preview/verify.gif)
 
 ### Notes
 
