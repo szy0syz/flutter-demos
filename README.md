@@ -281,3 +281,12 @@ print(identical(fls1, fls2));  // true
 
 ![s2](preview/safeArea1.png)
 ![s1](preview/safeArea0.png)
+
+- Flutter 获取GPS坐标插件：`geolocator`
+- Flutter 中 Stateless 组件声明周期:
+  - 1. `Widget build()`
+- Flutter 中 Stateful 组件声明周期:
+  - 1. `void initState()`
+  - 2. `Widget build()`
+  - 3. `void deactive()`
+- 所以说从组件声明周期函数就能引出如果只在页面初次渲染时获取地理位置，则在 `initState()` 函数中调用即可
