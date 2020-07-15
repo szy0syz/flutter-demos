@@ -290,3 +290,7 @@ print(identical(fls1, fls2));  // true
   - 2. `Widget build()`
   - 3. `void deactive()`
 - 所以说从组件声明周期函数就能引出如果只在页面初次渲染时获取地理位置，则在 `initState()` 函数中调用即可
+
+- HTTP Status Codes
+
+![code](preview/http_code.png)
