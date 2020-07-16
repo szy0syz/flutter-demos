@@ -294,3 +294,99 @@ print(identical(fls1, fls2));  // true
 - HTTP Status Codes
 
 ![code](preview/http_code.png)
+
+- **`Scaffold` 组件常见属性**
+
+```dart
+const Scaffold({
+  Key key,
+  this.appBar,    // 应用栏，显示在顶部，包括其中的搜索框
+  this.body,      // 页面的主题显示内容
+  this.floatingActionButton,          // 设置显示在上层区域的按钮，默认位置位于右下角
+  this.floatingActionButtonLocation,  // 设置floatingActionButton的位置
+  this.floatingActionButtonAnimator, // floatingActionButton动画
+  this.persistentFooterButtons,      // 在底部导航栏之上的一组操作按钮
+  this.drawer,    // 左侧导航栏
+  this.endDrawer, // 右侧导航栏
+  this.bottomNavigationBar, // 底部导航栏
+  this.bottomSheet,         // 底部可隐藏导航栏
+  this.backgroundColor,     // 内容区域颜色
+  this.resizeToAvoidBottomPadding, // 是否重新布局来避免底部被覆盖了，比如当键盘显示的时候，重新布局避免被键盘盖住内容。默认值为 true。
+  this.resizeToAvoidBottomInset, //键盘弹出时是否重新绘制，以避免输入框被遮挡
+  this.primary = true,          // 是否计算手机顶部状态栏的高度
+  this.drawerDragStartBehavior = DragStartBehavior.start, // 拖动的处理
+  this.extendBody = false,              // 是否延伸body至底部
+  this.extendBodyBehindAppBar = false, // 是否延伸body至顶部
+  this.drawerScrimColor,              // 抽屉遮罩层背景色
+  this.drawerEdgeDragWidth,                 // 滑动拉出抽屉的生效距离
+  this.drawerEnableOpenDragGesture = true, // 确定是否可以通过拖动手势打开Scaffold.drawer, 默认情况下，拖动手势处于启用状态
+  this.endDrawerEnableOpenDragGesture = true, // 确定是否可以使用拖动手势打开Scaffold.endDrawer，默认情况下，拖动手势处于启用状态。
+})
+```
+
+- Flutter **`Scaffold` 顶部导航栏实现**
+
+```dart
+return Scaffold(
+  appBar: AppBar(
+    title: Text('Two You'), // 页面名字
+    bottom: TabBar(
+      controller: _controller,
+      tabs: <Widget>[
+        Tab(
+          icon: Icon(Icons.view_list),
+          text: '推荐',
+        ),
+        Tab(
+          icon: Icon(Icons.favorite),
+          text: '关注',
+        ),
+        Tab(
+          icon: Icon(Icons.person),
+          text: '我',
+        ),
+      ],
+    ),
+  ),
+  body: TabBarView(
+    controller: _controller,
+    children: [
+      router.getPageByRouter('homepage'),
+      Icon(Icons.directions_transit),
+      router.getPageByRouter('userpage')
+    ],
+  ),
+);
+```
+
+- Flutter **`BottomNavigationBar` 底部导航栏实现**
+
+```dart
+BottomNavigationBar({
+  Key key,
+  @required this.items, // 数组，对应于BottomNavigationBarItem这个组件为菜单栏的每一项，其中包含四个属性icon、title、activeIcon和backgroundColor
+  this.onTap, // 点击触发逻辑，一般用来触发页面的跳转更新
+  this.currentIndex = 0, // 当前所在的 items 数组中的位置
+  this.elevation = 8.0, // 设置阴影效果值
+  BottomNavigationBarType type, // fixed(固定位置)和shifting(浮动效果)
+  Color fixedColor, // 代表选中时候的颜色，不能和selectedItemColor一起使用
+  this.backgroundColor, // 背景颜色
+  this.iconSize = 24.0, // icon 大小
+  Color selectedItemColor, // 代表选中的颜色，不能和selectedItemColor一起使用
+  this.unselectedItemColor, // 未选中时颜色
+  this.selectedIconTheme = const IconThemeData(), // 当前选中的BottomNavigationBarItem.icon中图标的大小，不透明度和颜色
+  this.unselectedIconTheme = const IconThemeData(), // 当前未选中的BottomNavigationBarItem.icon中图标的大小，不透明度和颜色
+  this.selectedFontSize = 14.0, // 选中的字体大小
+  this.unselectedFontSize = 12.0, // 未选中字体大小
+  this.selectedLabelStyle, // 选中字体样式
+  this.unselectedLabelStyle, // 未选中字体样式
+  this.showSelectedLabels = true, // 是否开启选中的样式
+  bool showUnselectedLabels, // 是否开启未选中的样式
+})
+```
+
+- 总的来说 `Flutter` 实现所有导航方式如下(都是 Scaffold 的属性)：
+  - 顶部导航栏用 `appBar`
+  - 底部导航栏用 `bottomNavigationBar`
+  - 边侧导航栏用 `drawer`
+  - 搜索框      `AppBar.actions`
