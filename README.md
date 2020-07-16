@@ -390,3 +390,8 @@ BottomNavigationBar({
   - 底部导航栏用 `bottomNavigationBar`
   - 边侧导航栏用 `drawer`
   - 搜索框      `AppBar.actions`
+- Flutter 两个页面回传对象怎么做？
+  - 1. `Navigator.push(... -> bPage())`;
+  - 2. 在 bPage 做业务 `Navigator.pop(context, username)`;
+  - 3. 修改aPage `var username = await Navigator.push()`;
+  - 4. 为什么可以 `await Navigator.push()` 方法？因为它是个 `Future<T> push<T extends Object>(BuildContext context, Route<T> route)`
