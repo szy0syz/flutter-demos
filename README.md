@@ -20,6 +20,7 @@
 - 🌀　flutter_bloc_crypto_app
 - 🌀　flutter_firebase_realtime_chat
 - 🌀　flutter_focused-pop-up_menu
+- ✅　flutter_nike_online_store
 
 ![00](preview/dice.gif)
 ![01](preview/xylophone.gif)
@@ -29,6 +30,7 @@
 ![05](preview/bmi.gif)
 ![06](preview/verify.gif)
 ![06](preview/blm_onboarding.gif)
+![07](preview/nike1.gif)
 
 ### Notes
 
