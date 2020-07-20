@@ -111,6 +111,41 @@ class _ShoesState extends State<Shoes> {
           )
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Card(
+        elevation: 1,
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
+        child: Container(
+          height: 50,
+          width: 130,
+          color: Colors.grey[200],
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(
+                Icons.filter_list,
+                size: 22,
+                color: Colors.black,
+              ),
+              SizedBox(
+                width: 16,
+              ),
+              Text(
+                "Filters",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 
