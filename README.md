@@ -397,3 +397,49 @@ BottomNavigationBar({
   - 2. 在 bPage 做业务 `Navigator.pop(context, username)`;
   - 3. 修改aPage `var username = await Navigator.push()`;
   - 4. 为什么可以 `await Navigator.push()` 方法？因为它是个 `Future<T> push<T extends Object>(BuildContext context, Route<T> route)`
+
+![tt](preview/airbnb-top.png)
+
+- 如何写一个小铃铛加小圆点（通知）？
+  - 那就上 `flutter` 中的 相对定位 `Stack`
+  - 然后先上主元素小铃铛
+  - 后面跟着被 `Positioned` 包裹的小圆点，表示绝对定位，记得写 `top` 和 `right` 即可
+- Scaffold 的 appBar 不想要那个分割线或者觉得分割线不够粗？？
+  - 套一个 `Material` 改 `elevation: 2` 就行了
+
+![sear](preview/search.png)
+
+- 如何写一个搜索框？
+  - 感觉和 css 还是有点类似，做的很明显的一件事就是去边框
+
+```dart
+TextField(
+  decoration: InputDecoration(
+      hintText: "Search",
+      hintStyle: TextStyle(
+        fontSize: 18,
+        color: Colors.grey[400],
+        fontWeight: FontWeight.bold,
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15),
+        borderSide: BorderSide(
+          width: 0,
+          style: BorderStyle.none,
+        ),
+      ),
+      filled: true,
+      fillColor: Colors.grey[200],
+      contentPadding: EdgeInsets.all(20),
+      prefixIcon: Padding(
+        padding: EdgeInsets.only(left: 16, right: 6),
+        child: Icon(
+          Icons.search,
+          color: Colors.grey[400],
+          size: 28,
+        ),
+      )),
+)
+```
+
+- `Column` 中分割元素就只会用 `SizedBox` 了，不会再有其他方法了
