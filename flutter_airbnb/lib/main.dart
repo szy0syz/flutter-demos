@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_airbnb/bottom_item.dart';
 import 'package:flutter_airbnb/menu_option.dart';
+import 'package:flutter_airbnb/recommend_card.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -116,14 +118,174 @@ class _MyHomePageState extends State<MyHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        MenuOption(),
-                        MenuOption(),
-                        MenuOption(),
-                      ])
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      MenuOption(
+                        title: "Flights",
+                        iconData: SimpleLineIcons.plane,
+                        selected: true,
+                      ),
+                      SizedBox(width: 24),
+                      MenuOption(
+                        title: "Hotels",
+                        iconData: MaterialCommunityIcons.room_service_outline,
+                        selected: false,
+                      ),
+                      SizedBox(width: 24),
+                      MenuOption(
+                        title: "Holidays",
+                        iconData: Feather.sun,
+                        selected: false,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 24),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      MenuOption(
+                        title: "Bus",
+                        iconData: FontAwesome.bus,
+                        selected: false,
+                      ),
+                      SizedBox(width: 24),
+                      MenuOption(
+                        title: "Cabs",
+                        iconData: FontAwesome.cab,
+                        selected: false,
+                      ),
+                      SizedBox(width: 24),
+                      MenuOption(
+                        title: "Trains",
+                        iconData: MaterialCommunityIcons.train,
+                        selected: true,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      MenuOption(
+                        title: "Homes",
+                        iconData: AntDesign.home,
+                        selected: false,
+                      ),
+                      SizedBox(
+                        width: 24,
+                      ),
+                      MenuOption(
+                        title: "Gift Cards",
+                        iconData: MaterialIcons.card_giftcard,
+                        selected: false,
+                      ),
+                      SizedBox(
+                        width: 24,
+                      ),
+                      MenuOption(
+                          title: "More",
+                          iconData: MaterialIcons.more_horiz,
+                          selected: false),
+                    ],
+                  ),
                 ],
-              )
+              ),
+              SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "Recommend",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "View all",
+                    style: TextStyle(
+                      color: Colors.grey[500],
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Container(
+                height: 130,
+                child: ListView(
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    RecommendCard(
+                      imageUrl: 'assets/images/plane.jpg',
+                      title: "IndiGo, Spicejet & AirAsia Sale is LIVE!",
+                      offerEnds: "Offer ends in 01d 13h 22m",
+                      startPrices: r"Fares Starting at $890 Only!",
+                    ),
+                    RecommendCard(
+                      imageUrl: 'assets/images/train.jpg',
+                      title: "Irish Rail & Translink discounts!",
+                      offerEnds: "Offer ends in 03d 05h 44m",
+                      startPrices: r"Fares Starting at $199 Only!",
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Container(
+          width: double.infinity,
+          height: 56,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              SizedBox(
+                width: 8,
+              ),
+              BottomItem(
+                title: "Home",
+                iconData: Icons.home,
+                selected: true,
+              ),
+              SizedBox(
+                width: 4,
+              ),
+              BottomItem(
+                title: "Wallet",
+                iconData: SimpleLineIcons.wallet,
+                selected: false,
+              ),
+              SizedBox(
+                width: 4,
+              ),
+              BottomItem(
+                title: "Suitcase",
+                iconData: FontAwesome.suitcase,
+                selected: false,
+              ),
+              SizedBox(
+                width: 4,
+              ),
+              BottomItem(
+                title: "Settings",
+                iconData: Feather.settings,
+                selected: false,
+              ),
+              SizedBox(
+                width: 8,
+              ),
             ],
           ),
         ),
