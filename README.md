@@ -22,6 +22,7 @@
 - 🌀　flutter_focused-pop-up_menu
 - ✅　flutter_nike_online_store
 - ✅　flutter_aribnb
+- ✅　flutter_rotated_menu
 
 ![00](preview/dice.gif)
 ![01](preview/xylophone.gif)
@@ -33,6 +34,7 @@
 ![06](preview/blm_onboarding.gif)
 ![07](preview/nike1.gif)
 ![08](preview/airbnb.gif)
+![09](preview/menu.gif)
 
 ### Notes
 
