@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nike_app/boxWidget.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[500],
+      backgroundColor: Colors.grey[400],
       body: Stack(
         children: <Widget>[
           buildAppBar(),
@@ -35,7 +36,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget buildPagerView() {
-    return PageView();
+    return PageView(
+      children: <Widget>[
+        BoxWidget(),
+      ],
+    );
   }
 
   Widget buildAppBar() {

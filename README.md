@@ -447,3 +447,26 @@ TextField(
 ```
 
 - `Column` 中分割元素就只会用 `SizedBox` 了，不会再有其他方法了
+
+### 划鞋盒子
+
+![box11](preview/box11.png)
+![box22](preview/box22.png)
+![box33](preview/box33.png)
+![box44](preview/box44.png)
+![box55](preview/box55.png)
+
+```dart
+/// 底层纸板
+path.moveTo(startFromX, 250);
+path.lineTo(startFromX, 400);
+path.lineTo(endToX, 400);
+path.lineTo(endToX, 250);
+
+/// 右边纸板
+path.moveTo(startFromX, 250);
+path.lineTo(startFromX, 400);
+path.lineTo(endToX, 400);
+path.lineTo(endToX, 250);
+path.close();
+```
