@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nike_app/boxWidget.dart';
+import 'package:flutter_nike_app/shoe.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,6 +23,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  double pagerValue = 0;
+  PageController pageController;
+
+  @override
+  void initState() {
+    setState(() {
+      pagerValue = pageController.page;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,10 +48,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget buildPagerView() {
-    return PageView(
-      children: <Widget>[
-        BoxWidget(),
-      ],
+    return Padding(
+      padding: EdgeInsets.only(top: 16.0),
+      child: PageView(
+        controller: pageController,
+        children: getShoes()
+            .map((e) => BoxWidget(
+                  shoe: e,
+                  pagerValue: pagerValue,
+                ))
+            .toList(),
+      ),
     );
   }
 
@@ -62,5 +81,13 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  List<Shoe> getShoes() {
+    List<Shoe> list = [];
+    list.add(Shoe(0, 'images/image1.png', 'FALCONE SHOES', 'PINK', 110, 4.3));
+    list.add(Shoe(1, 'images/image2.png', 'Air Max 270', 'BLACK', 110, 4.3));
+    list.add(Shoe(2, 'images/image3.png', 'Air Max 270', 'WHITE', 110, 4.3));
+    return list;
   }
 }
