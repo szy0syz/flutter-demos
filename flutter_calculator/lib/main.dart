@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_calculator/widgets/CalcButton.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 void main() {
   runApp(CalcApp());
@@ -19,6 +20,32 @@ class CalcAppState extends State<CalcApp> {
   void numClick(String text) {
     setState(() {
       _expression += text;
+    });
+  }
+
+  void allClear(String text) {
+    setState(() {
+      _history = '';
+      _expression = '';
+    });
+  }
+
+  void clear(String text) {
+    setState(() {
+      _expression = '';
+    });
+  }
+
+  void evaluate(String text) {
+    Parser p = Parser();
+    Expression exp = p.parse(_expression);
+    ContextModel cm = ContextModel();
+
+    double eval = exp.evaluate(EvaluationType.REAL, cm);
+
+    setState(() {
+      _history = _expression;
+      _expression = eval.toString();
     });
   }
 
@@ -62,12 +89,12 @@ class CalcAppState extends State<CalcApp> {
                   text: 'AC',
                   fillColor: 0xFF6C807F,
                   textSize: 20,
-                  callback: numClick,
+                  callback: allClear,
                 ),
                 CalcButton(
                   text: 'C',
                   fillColor: 0xFF6C807F,
-                  callback: numClick,
+                  callback: clear,
                 ),
                 CalcButton(
                   text: '%',
@@ -175,7 +202,7 @@ class CalcAppState extends State<CalcApp> {
                   text: '=',
                   fillColor: 0xFFFFFFFF,
                   textColor: 0xFF65BDAC,
-                  callback: numClick,
+                  callback: evaluate,
                 ),
               ],
             ),
