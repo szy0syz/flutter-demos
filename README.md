@@ -35,6 +35,7 @@
 ![07](preview/nike1.gif)
 ![08](preview/airbnb.gif)
 ![09](preview/menu.gif)
+![10](preview/calc.gif)
 
 ### Notes
 
