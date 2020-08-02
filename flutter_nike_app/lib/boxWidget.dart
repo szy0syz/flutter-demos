@@ -20,7 +20,29 @@ class BoxWidget extends StatelessWidget {
     return Stack(
       children: <Widget>[
         buildContainer(size),
+        Positioned(
+          top: 250.0 + 45.0,
+          left: size.width / 2 - 100, // 鞋子图宽的一半
+          child: Image.asset(
+            shoe.image,
+            width: 200,
+            height: 110,
+          ),
+        ),
+        Positioned(
+          top: 240,
+          left: size.width / 2 - 100, // 鞋子图宽的一半
+          child: RotatedBox(
+            quarterTurns: 2,
+            child: Image.asset(
+              shoe.image,
+              width: 200,
+              height: 110,
+            ),
+          ),
+        ),
         buildBoxDoor(size),
+        buildBoxDoorTop(size),
       ],
     );
   }
@@ -38,6 +60,8 @@ class BoxWidget extends StatelessWidget {
   }
 
   Widget buildBoxDoor(Size size) {
+    animationValue = (shoe.index - pagerValue).abs();
+
     return Positioned(
       top: 19,
       left: size.width / 2 - 232 / 2,
@@ -46,12 +70,51 @@ class BoxWidget extends StatelessWidget {
         alignment: FractionalOffset.center,
         transform: Matrix4.identity()
           ..setEntry(3, 2, .001)
-          ..rotateX(math.pi * 0.35),
+          ..rotateX(math.pi * animation.transform(animationValue))
+          ..scale(0.9 + 1 * (1 - animationValue), 1.0),
         child: Center(
           child: Container(
             width: 232,
-            height: 200,
-            color: Colors.orange[200],
+            height: 200, // 切换盒子时，盒子顶部颜色为橙色不透明
+            color: animation.transform(animationValue) < 0.5
+                ? Colors.orange[200]
+                : Colors.orange,
+            child: animation.transform(animationValue) < 0.5
+                ? Container()
+                : Center(
+                    child: Transform(
+                      transform: Matrix4.identity()
+                        ..translate(0.0, 100.0)
+                        ..rotateX(math.pi * 3),
+                      child: Image.asset(
+                        'images/nike.png',
+                        height: 100,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildBoxDoorTop(Size size) {
+    return Positioned(
+      top: 50,
+      left: size.width / 2 - 285 / 2,
+      child: Transform(
+        alignment: FractionalOffset.bottomCenter,
+        transform: Matrix4.identity()
+          ..setEntry(3, 2, 0.0008)
+          ..translate(0.0, 380 * animationValue)
+          ..scale(.9 + .1 * (animationValue), .9 + .1 * (1 - animationValue))
+          ..rotateX(math.pi * animationRo.transform(animationValue)),
+        child: Center(
+          child: Container(
+            width: 285,
+            height: 60,
+            color: Colors.orange,
           ),
         ),
       ),
