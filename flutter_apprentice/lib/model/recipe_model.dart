@@ -1,4 +1,4 @@
-import 'package:flutter_t1/model/ingredients_model.dart';
+import 'package:flutter_apprentice/model/ingredients_model.dart';
 
 class Recipe {
   String lable;

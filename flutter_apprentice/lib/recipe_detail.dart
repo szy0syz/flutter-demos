@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_t1/model/recipe_model.dart';
+import 'package:flutter_apprentice/model/recipe_model.dart';
 
 class RecipeDetail extends StatefulWidget {
   final Recipe recipe;
