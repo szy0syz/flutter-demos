@@ -16,7 +16,7 @@ class _RecipeDetailState extends State<RecipeDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.recipe.lable)),
+      appBar: AppBar(title: Text(widget.recipe.label)),
       body: SafeArea(
           child: Column(
         children: [
@@ -24,12 +24,12 @@ class _RecipeDetailState extends State<RecipeDetail> {
             height: 300,
             width: double.infinity,
             child: Image(
-              image: AssetImage(widget.recipe.imgUrl),
+              image: AssetImage(widget.recipe.imageUrl),
             ),
           ),
           const SizedBox(height: 4),
           Text(
-            widget.recipe.lable,
+            widget.recipe.label,
             style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
           ),
           Expanded(
