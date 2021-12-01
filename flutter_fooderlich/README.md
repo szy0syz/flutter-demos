@@ -46,3 +46,6 @@ that the user pressed. setState() notifies the framework that the state of this 
 pixels, which are like dp on Android.
   - 在Flutter页面布局时用的单位是 `逻辑像素`，相当于安卓系统中的 `dp` 单位
 - Apply BoxDecoration. This describes how to draw a box. 🐬
+- In BoxDecoration, set up DecorationImage, which tells the box to paint an
+image.
+- 如果用了Stack后，不做定位，你的所有组件都会从 `(0,0)` 坐标开始重叠绘制
