@@ -75,6 +75,7 @@ class Card3 extends StatelessWidget {
                         style: FooderlichTheme.darkTextTheme.bodyText1),
                     backgroundColor: Colors.black.withOpacity(0.7),
                   ),
+                  
                 ],
               ),
             )

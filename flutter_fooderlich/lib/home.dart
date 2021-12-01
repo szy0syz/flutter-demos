@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlich/card2.dart';
-import 'package:fooderlich/card3.dart';
+import 'card2.dart';
+import 'card3.dart';
 import 'card1.dart';
 
 // 1
