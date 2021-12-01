@@ -15,16 +15,25 @@ class Card1 extends StatelessWidget {
     // 3
     return Center(
       child: Container(
+        // TODO: Add a stack of text
+        // 1
         padding: const EdgeInsets.all(16),
+        // 2
         constraints: const BoxConstraints.expand(
           width: 350,
           height: 450,
         ),
+        // 3
         decoration: const BoxDecoration(
+          // 4
           image: DecorationImage(
+            // 5
             image: AssetImage('assets/mag1.png'),
+            // 6
             fit: BoxFit.cover,
           ),
+          // 7
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
         ),
       ),
     );

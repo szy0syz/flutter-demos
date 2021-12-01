@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlich/card1.dart';
+import 'card1.dart';
 
 // 1
 class Home extends StatefulWidget {

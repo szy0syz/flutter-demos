@@ -41,3 +41,8 @@ class _HomeState extends State<Home> {
 
 - This function handles tapped tab bar items. Here, you set the index of the item
 that the user pressed. setState() notifies the framework that the state of this object has changed, then rebuilds this widget internally.
+
+- Apply a padding of 16 on all sides of the box. Flutter units are specified in logical
+pixels, which are like dp on Android.
+  - 在Flutter页面布局时用的单位是 `逻辑像素`，相当于安卓系统中的 `dp` 单位
+- Apply BoxDecoration. This describes how to draw a box. 🐬
