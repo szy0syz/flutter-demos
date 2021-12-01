@@ -49,3 +49,4 @@ pixels, which are like dp on Android.
 - In BoxDecoration, set up DecorationImage, which tells the box to paint an
 image.
 - 如果用了Stack后，不做定位，你的所有组件都会从 `(0,0)` 坐标开始重叠绘制
+- 在一个 `Stack` 里放一个 `Container` 时，竟然这个 `Container` 会被撑满整个组件，意料以外

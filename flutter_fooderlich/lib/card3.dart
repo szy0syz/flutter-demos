@@ -20,9 +20,64 @@ class Card3 extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            // TODO 5: add dark overlay BoxDecoration
-            // TODO 6: Add Container, Column, Icon and Text
-            // TODO 7: Add Center widget with Chip widget children
+            Container(
+              decoration: BoxDecoration(
+                // 1
+                color: Colors.black.withOpacity(0.6),
+                // 2
+                borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+              ),
+            ),
+            Container(
+              // 3
+              padding: const EdgeInsets.all(16),
+              // 4
+              child: Column(
+                // 5
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // 6
+                  const Icon(Icons.book, color: Colors.white, size: 40),
+                  // 7
+                  const SizedBox(height: 8),
+                  // 8
+                  Text(
+                    'Recipe Trends',
+                    style: FooderlichTheme.darkTextTheme.headline2,
+                  ),
+                  // 9
+                  const SizedBox(height: 30),
+                ],
+              ),
+            ),
+            Center(
+              child: Wrap(
+                alignment: WrapAlignment.start,
+                spacing: 12,
+                children: [
+                  Chip(
+                    label: Text(
+                      'Healthy',
+                      style: FooderlichTheme.darkTextTheme.bodyText1,
+                    ),
+                    backgroundColor: Colors.black.withOpacity(0.7),
+                    onDeleted: () {
+                      print('delete');
+                    },
+                  ),
+                  Chip(
+                    label: Text('Vegan',
+                        style: FooderlichTheme.darkTextTheme.bodyText1),
+                    backgroundColor: Colors.black.withOpacity(0.7),
+                  ),
+                  Chip(
+                    label: Text('Carrots',
+                        style: FooderlichTheme.darkTextTheme.bodyText1),
+                    backgroundColor: Colors.black.withOpacity(0.7),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
