@@ -12,7 +12,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   // 7
-  int _selectedIndex = 2;
+  int _selectedIndex = 1;
 
   // 8
   static List<Widget> pages = <Widget>[
