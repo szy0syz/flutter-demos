@@ -36,6 +36,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
   @override
   void dispose() {
     _controller.removeListener(_scrollListener);
+    _controller.dispose();
     super.dispose();
   }
 

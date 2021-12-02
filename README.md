@@ -512,6 +512,21 @@ void dispose() {
 }
 ```
 
+- `ListView` 和 `GridView` 两者同时支持水平和垂直方向滚动的；
+- The primary property lets Flutter know which scroll view is the primary scroll
+view.
+  - 设置 primary 属性后可以告诉 Flutter 这个滚动视图时主滚动视图？有点懵，难道说给它升级，优先它的滚动了？
+- Especially in a nested list view, remember to set shrinkWrap to true so you can give the scroll view a fixed height for all the items in the list.
+  - 特别是在嵌套滚动时，必须给其余的 `scroll-view` 设置 `shrinkWrap: true`，否则肯定是编译不过，这样可以给这个滚动视图里的每个元素设置一个固定高度或宽度。
+- Barrel files are handy to group imports together. They also let you import many widgets using a single file.
+
+```dart
+export 'post.dart';
+export 'explore_recipe.dart';
+export 'simple_recipe.dart';
+export 'explore_data.dart';
+```
+
 ### **Section II: Everything’s a Widget**
 
 - The Scaffold widget implements all your basic visual layout structure needs.
