@@ -601,3 +601,21 @@ image.
   - 原来设置 16比9 如此简单!
 
 > Note: Dart does the calculation for you to provide the double. What if you’d wanted a 16:9 ratio? You’d put 16 / 9 and not 1.5.
+
+### Switching tabs
+
+> 状态管理
+
+现在我们需要在孙子组件里点击切换 `tab`，要把这件事传递给爷爷组件，告诉它换个 TabView 渲染，我们有如下两种方式实现：
+
+- 光从肉眼来看，必然是第二种方法号上去比较好。
+
+![001](preview/images/001.png)
+
+![002](preview/images/002.png)
+
+- Provider overview
+  - ChangeNotifier is extended by a class to provide change notifications to its listeners.
+  - ChangeNotifierProvider listens for changes to a ChangeNotifier. Widgets below it can access the state object and listen to state changes.
+  - Consumer wraps around part of a widget tree. It rebuilds part of a subtree when the state it listens to changes.
+  - Provider.of allows descendant widgets to access the state object. If you only need access to the state object and don’t need to listen for changes, `use this` 😂 用它!

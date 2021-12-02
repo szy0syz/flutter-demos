@@ -17,7 +17,7 @@ class EmptyGroceryScreen extends StatelessWidget {
                 child: Image.asset('assets/empty_list.png'),
               ),
             ),
-            const SizedBox(height: 6.0),
+            const SizedBox(height: 48.0),
             const Text(
               'No Groceries',
               style: TextStyle(fontSize: 21.0),
@@ -28,6 +28,15 @@ class EmptyGroceryScreen extends StatelessWidget {
               'Tap the + button to write them down!',
               textAlign: TextAlign.center,
             ),
+            const SizedBox(height: 6.0),
+            MaterialButton(
+              color: Colors.green,
+              textColor: Colors.white,
+              child: const Text('Browse Recipes'),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0)),
+              onPressed: () {},
+            )
           ],
         ),
       ),
