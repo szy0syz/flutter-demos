@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fooderlich/components/components.dart';
+import 'package:fooderlich/models/explore_data.dart';
 import '../api/mock_fooderlich_service.dart';
 
 class ExploreScreen extends StatelessWidget {
@@ -11,18 +12,23 @@ class ExploreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: mockService.getExploreData(),
-      builder: (context, AsyncSnapshot snapshot) {
-        // TODO: Add Nested List Views
-        // 4
+      builder: (context, AsyncSnapshot<ExploreData> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          // 5
-          final recipes = snapshot.data?.todayRecipes ?? [];
-          return TodayRecipeListView(recipes: recipes);
-        } else {
-          // 6
-          return const Center(
-            child: CircularProgressIndicator(),
+          return ListView(
+            scrollDirection: Axis.vertical,
+            children: [
+              TodayRecipeListView(recipes: snapshot.data?.todayRecipes ?? []),
+              const SizedBox(height: 16),
+              // TODO: Replace this with FriendPostListView
+              Container(
+                height: 400,
+                color: Colors.green,
+              ),
+            ],
           );
+        } else {
+          // 10
+          return const Center(child: CircularProgressIndicator());
         }
       },
     );
