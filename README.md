@@ -474,7 +474,15 @@ path.close();
 
 ## flutter_fooderlich
 
-> **Section II: Everything’s a Widget**
+### Notes_footerlich
+
+- Fun fact: Column and Row widgets are like ListView but without the scroll view.
+- ListView.builder() takes in an IndexedWidgetBuilder and builds the list on demand.
+  - 根据索引，按需构建，相当于虚拟滚动了
+- ListView.custom() gives you more fine-grain control over your child items.
+  - 细颗粒度控制列表渲染
+
+### **Section II: Everything’s a Widget**
 
 - The Scaffold widget implements all your basic visual layout structure needs.
 - Scaffold 实现了你对基本视觉布局结构的所有需求！
@@ -537,3 +545,4 @@ image.
 
 - That’s where inherited widgets come in! By adding an inherited widget in your tree, you can reference the data from any of its descendants. This is known as lifting state up.
 - “状态提升”
+
