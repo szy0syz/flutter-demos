@@ -19,11 +19,7 @@ class ExploreScreen extends StatelessWidget {
             children: [
               TodayRecipeListView(recipes: snapshot.data?.todayRecipes ?? []),
               const SizedBox(height: 16),
-              // TODO: Replace this with FriendPostListView
-              Container(
-                height: 400,
-                color: Colors.green,
-              ),
+              FriendPostListView(friendPosts: snapshot.data?.friendPosts ?? []),
             ],
           );
         } else {
