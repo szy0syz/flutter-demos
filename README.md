@@ -591,3 +591,13 @@ image.
 - That’s where inherited widgets come in! By adding an inherited widget in your tree, you can reference the data from any of its descendants. This is known as lifting state up.
 - “状态提升”
 
+### Interactive Widgets
+
+- Note: Remember that the purpose of a barrel file is to group common Dart files together. This allows you to group classes that are commonly used together so you only have to import a single file — in this case, models.dart.
+
+- `Flexible` gives a child the ability to fill the available space in the main axis.
+- `AspectRatio` sizes its child to the specified aspectRatio. Although aspectRatio is a double, the Flutter documentation recommends writing it as width / height instead of the calculated result. In this case, you want a square aspect ratio of 1 / 1 and not 1.0.
+  - 两个小伙伴要一起用！
+  - 原来设置 16比9 如此简单!
+
+> Note: Dart does the calculation for you to provide the double. What if you’d wanted a 16:9 ratio? You’d put 16 / 9 and not 1.5.
