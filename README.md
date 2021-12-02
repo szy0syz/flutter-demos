@@ -4,25 +4,25 @@
 
 ## Menus
 
-- 📝　flutter_two_you
-- ✅　flutter_sqlite_todos
-- 📝　flutter_ctrip
-- ✅　flutter_dicee
-- ✅　flutter_mi_card
-- ✅　flutter_xylophone 🎹
-- ✅　flutter_quizzler
-- ✅　flutter_bmi_calculator
-- ✅　flutter_phone_verification
-- ✅　flutter_blm_onboarding
-- 🌀　flutter_clima
-- 🌀　flutter_flash_chat
-- 🌀　flutter_firebase_instagram
-- 🌀　flutter_bloc_crypto_app
-- 🌀　flutter_firebase_realtime_chat
-- 🌀　flutter_focused-pop-up_menu
-- ✅　flutter_nike_online_store
-- ✅　flutter_aribnb
-- ✅　flutter_rotated_menu
+- 📝 　 flutter_two_you
+- ✅ 　 flutter_sqlite_todos
+- 📝 　 flutter_ctrip
+- ✅ 　 flutter_dicee
+- ✅ 　 flutter_mi_card
+- ✅ 　 flutter_xylophone 🎹
+- ✅ 　 flutter_quizzler
+- ✅ 　 flutter_bmi_calculator
+- ✅ 　 flutter_phone_verification
+- ✅ 　 flutter_blm_onboarding
+- 🌀 　 flutter_clima
+- 🌀 　 flutter_flash_chat
+- 🌀 　 flutter_firebase_instagram
+- 🌀 　 flutter_bloc_crypto_app
+- 🌀 　 flutter_firebase_realtime_chat
+- 🌀 　 flutter_focused-pop-up_menu
+- ✅ 　 flutter_nike_online_store
+- ✅ 　 flutter_aribnb
+- ✅ 　 flutter_rotated_menu
 
 ![00](preview/dice.gif)
 ![01](preview/xylophone.gif)
@@ -43,14 +43,14 @@
   - 在 Android 中，View 是屏幕上显示的所有内容的基础，按钮、工具栏、输入框等一些均为 View；
   - 在 iOS 中，构建 UI 的过程中将大量使用 view 对象。这些对象都是 UIVIew 的实例。它们可以用作容器来承载其他的 UIVIew，最终构成你的界面布局；
   - 在 React Native 中， View 是一个支持 Flexbox 布局的容器，样式、触摸处理和辅助控制。
-  - 在 Flutter 中，我们可以将 Widget 当作是 Android、iOS、RN中的 View，但并不完全等价，其实 Flutter 认为 Widget 是声明和构建 UI 的方法。
+  - 在 Flutter 中，我们可以将 Widget 当作是 Android、iOS、RN 中的 View，但并不完全等价，其实 Flutter 认为 Widget 是声明和构建 UI 的方法。
   - 但 Widget 与 View 有区别。
-    - 首先，Widget 具有不同的声明周期：他们是不可变的，他们会存在于状态被改变之前。每当 Widget 或其他状态发生改变时，Flutter 框架都会创建一个新的 Widget 实例树。相比之下，Android和iOS 视图被绘制一次，并且在调用 `invalidate/setNeedsDisplay` 之前不会重绘。
+    - 首先，Widget 具有不同的声明周期：他们是不可变的，他们会存在于状态被改变之前。每当 Widget 或其他状态发生改变时，Flutter 框架都会创建一个新的 Widget 实例树。相比之下，Android 和 iOS 视图被绘制一次，并且在调用 `invalidate/setNeedsDisplay` 之前不会重绘。
     - 此外，与 View 不同，Flutter 的 Widget 很轻巧，部分原因在于它的不可变性。因为它本身不是视图，并且不会直接绘制任何东西，而是对 UI 及其语义的描述而已。
 - 不要在赤裸裸的使用 Image 组件，鬼知道它又多大，大多了就出现故障栏，要用 `Expanded` 包一下
 - `Expanded` 里可以使用 `flex:2` 属性，设置它在当前行占据的比例，和 CSS-flex 里的属性类似
   - 如果都设 `flex:1` 就是一样大
-  - 怪求不得，看了下继承关系：[`Object > DiagnosticableTree > Widget > ProxyWidget > ParentDataWidget<FlexParentData > Flexible >  Expanded`](https://api.flutter.dev/flutter/widgets/Expanded-class.html)
+  - 怪求不得，看了下继承关系：[`Object > DiagnosticableTree > Widget > ProxyWidget > ParentDataWidget<FlexParentData > Flexible > Expanded`](https://api.flutter.dev/flutter/widgets/Expanded-class.html)
 - 有些时候组件自带一些属性则可以省略自己写，如 `FlatButton` 自带 `padding` 属性，我们则不需要再写
   - 怎么看这个组件原生带了额外属性，调试工具里搜关键字吧
 
@@ -76,7 +76,7 @@ class ReusableCard extends StatelessWidget {
 - 布局技巧
   - 最外层 `Column` 行组件
   - 每行先来一个 `Row` 列组件
-  - 最后每行的里，再包一个 `Expanded` 撑开组件，因为中间那个沾满整行，如果两个就50%排布
+  - 最后每行的里，再包一个 `Expanded` 撑开组件，因为中间那个沾满整行，如果两个就 50%排布
 
 ![layout1](preview/layout1.png)
 
@@ -283,13 +283,13 @@ const List cls2 = [11,22,33];
 print(identical(fls1, fls2));  // true
 ```
 
-- Dart中的默认值：一切都是 `Object`，变量声明默认都是 `null`
+- Dart 中的默认值：一切都是 `Object`，变量声明默认都是 `null`
 - Flutter 组件中 `SafeArea` 到底是啥 ?
 
 ![s2](preview/safeArea1.png)
 ![s1](preview/safeArea0.png)
 
-- Flutter 获取GPS坐标插件：`geolocator`
+- Flutter 获取 GPS 坐标插件：`geolocator`
 - Flutter 中 Stateless 组件声明周期:
   - 1. `Widget build()`
 - Flutter 中 Stateful 组件声明周期:
@@ -396,11 +396,11 @@ BottomNavigationBar({
   - 顶部导航栏用 `appBar`
   - 底部导航栏用 `bottomNavigationBar`
   - 边侧导航栏用 `drawer`
-  - 搜索框      `AppBar.actions`
+  - 搜索框 `AppBar.actions`
 - Flutter 两个页面回传对象怎么做？
   - 1. `Navigator.push(... -> bPage())`;
   - 2. 在 bPage 做业务 `Navigator.pop(context, username)`;
-  - 3. 修改aPage `var username = await Navigator.push()`;
+  - 3. 修改 aPage `var username = await Navigator.push()`;
   - 4. 为什么可以 `await Navigator.push()` 方法？因为它是个 `Future<T> push<T extends Object>(BuildContext context, Route<T> route)`
 
 ![tt](preview/airbnb-top.png)
@@ -480,6 +480,7 @@ path.close();
 - ListView.builder() takes in an IndexedWidgetBuilder and builds the list on demand.
   - 根据索引，按需构建，相当于虚拟滚动了
 - ListView.custom() gives you more fine-grain control over your child items.
+
   - 细颗粒度控制列表渲染
 
 - 就一开始就养成良好的习惯
@@ -514,7 +515,7 @@ void dispose() {
 
 - `ListView` 和 `GridView` 两者同时支持水平和垂直方向滚动的；
 - The primary property lets Flutter know which scroll view is the primary scroll
-view.
+  view.
   - 设置 primary 属性后可以告诉 Flutter 这个滚动视图时主滚动视图？有点懵，难道说给它升级，优先它的滚动了？
 - Especially in a nested list view, remember to set shrinkWrap to true so you can give the scroll view a fixed height for all the items in the list.
   - 特别是在嵌套滚动时，必须给其余的 `scroll-view` 设置 `shrinkWrap: true`，否则肯定是编译不过，这样可以给这个滚动视图里的每个元素设置一个固定高度或宽度。
@@ -565,15 +566,15 @@ class _HomeState extends State<Home> {
 > Theme.of(context) returns the nearest Theme in the widget tree. If the widget has a defined Theme, it returns that. Otherwise, it returns the app’s theme.
 
 - This function handles tapped tab bar items. Here, you set the index of the item
-that the user pressed. setState() notifies the framework that the state of this object has changed, then rebuilds this widget internally.
+  that the user pressed. setState() notifies the framework that the state of this object has changed, then rebuilds this widget internally.
 
 - Apply a padding of 16 on all sides of the box. Flutter units are specified in logical
-pixels, which are like dp on Android.
-  - 在Flutter页面布局时用的单位是 `逻辑像素`，相当于安卓系统中的 `dp` 单位
+  pixels, which are like dp on Android.
+  - 在 Flutter 页面布局时用的单位是 `逻辑像素`，相当于安卓系统中的 `dp` 单位
 - Apply BoxDecoration. This describes how to draw a box. 🐬
 - In BoxDecoration, set up DecorationImage, which tells the box to paint an
-image.
-- 如果用了Stack后，不做定位，你的所有组件都会从 `(0,0)` 坐标开始重叠绘制
+  image.
+- 如果用了 Stack 后，不做定位，你的所有组件都会从 `(0,0)` 坐标开始重叠绘制
 - 在一个 `Stack` 里放一个 `Container` 时，竟然这个 `Container` 会被撑满整个组件，意料以外
 
 ### What is a widget?
@@ -598,7 +599,7 @@ image.
 - `Flexible` gives a child the ability to fill the available space in the main axis.
 - `AspectRatio` sizes its child to the specified aspectRatio. Although aspectRatio is a double, the Flutter documentation recommends writing it as width / height instead of the calculated result. In this case, you want a square aspect ratio of 1 / 1 and not 1.0.
   - 两个小伙伴要一起用！
-  - 原来设置 16比9 如此简单!
+  - 原来设置 16 比 9 如此简单!
 
 > Note: Dart does the calculation for you to provide the double. What if you’d wanted a 16:9 ratio? You’d put 16 / 9 and not 1.5.
 
@@ -619,3 +620,27 @@ image.
   - ChangeNotifierProvider listens for changes to a ChangeNotifier. Widgets below it can access the state object and listen to state changes.
   - Consumer wraps around part of a widget tree. It rebuilds part of a subtree when the state it listens to changes.
   - Provider.of allows descendant widgets to access the state object. If you only need access to the state object and don’t need to listen for changes, `use this` 😂 用它!
+
+```dart
+Widget build(BuildContext context) {
+  return Consumer<TabManager>(
+    builder: (context, tabManager, child) {
+      return Scaffold(
+        appBar: AppBar(title: Text('Fooderlich')),
+        body: pages[tabManager.selectedTab],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: tabManager.selectedTab,
+          onTap: tabManager.goToTab,
+          items: [],
+        ),
+      );
+    },
+  );
+}
+```
+
+- 注意以下几点：
+  - Wraps all the widgets inside Consumer. When TabManager changes, the widgets below it will rebuild.
+  - Displays the correct page widget, based on the current tab index.
+
+![003](preview/images/003.png)
