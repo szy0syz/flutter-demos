@@ -482,6 +482,36 @@ path.close();
 - ListView.custom() gives you more fine-grain control over your child items.
   - 细颗粒度控制列表渲染
 
+- 就一开始就养成良好的习惯
+
+```dart
+late ScrollController _controller;
+
+@override
+void initState() {
+  super.initState();
+  _controller = ScrollController();
+  _controller.addListener(_scrollListener);
+}
+
+void _scrollListener() {
+  if (_controller.offset >= _controller.position.maxScrollExtent &&
+      !_controller.position.outOfRange) {
+    print('reached the bottom');
+  }
+  if (_controller.offset <= _controller.position.minScrollExtent &&
+      !_controller.position.outOfRange) {
+    print('reached the top!');
+  }
+}
+
+@override
+void dispose() {
+  _controller.removeListener(_scrollListener);
+  super.dispose();
+}
+```
+
 ### **Section II: Everything’s a Widget**
 
 - The Scaffold widget implements all your basic visual layout structure needs.
