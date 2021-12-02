@@ -58,3 +58,10 @@ image.
 ### State object lifecycle
 
 > Note: Asynchronous code should always check if the mounted property is true before calling setstate(), because the widget may no longer be part of the widget tree.
+
+### InheritedWidget
+
+> pic
+
+- That’s where inherited widgets come in! By adding an inherited widget in your tree, you can reference the data from any of its descendants. This is known as lifting state up.
+- “状态提升”
