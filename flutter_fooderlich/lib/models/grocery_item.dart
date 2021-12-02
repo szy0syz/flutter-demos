@@ -25,7 +25,7 @@ class GroceryItem {
     this.isComplete = false,
   });
 
-  GroceryItem copywith({
+  GroceryItem copyWith({
     String? id,
     String? name,
     Importance? importance,
