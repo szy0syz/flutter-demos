@@ -63,6 +63,154 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
     super.dispose();
   }
 
+  Widget buildNameField() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Item Name',
+          style: GoogleFonts.lato(fontSize: 28.0),
+        ),
+        TextField(
+          controller: _nameController,
+          cursorColor: _currentColor,
+          decoration: InputDecoration(
+            hintText: 'E.g. Apples, Banana, 1 Bag of salt',
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: _currentColor),
+            ),
+            border: UnderlineInputBorder(
+              borderSide: BorderSide(color: _currentColor),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget buildImportanceField() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Importance',
+          style: GoogleFonts.lato(fontSize: 28.0),
+        ),
+        Wrap(
+          spacing: 10.0,
+          children: [
+            ChoiceChip(
+              selectedColor: Colors.black,
+              selected: _importance == Importance.low,
+              label: const Text(
+                'low',
+                style: TextStyle(color: Colors.white),
+              ),
+              onSelected: (selected) {
+                setState(() => _importance = Importance.low);
+              },
+            ),
+            ChoiceChip(
+              selectedColor: Colors.black,
+              label: const Text(
+                'medium',
+                style: TextStyle(color: Colors.white),
+              ),
+              selected: _importance == Importance.medium,
+              onSelected: (selected) {
+                setState(() => _importance = Importance.medium);
+              },
+            ),
+            ChoiceChip(
+              selectedColor: Colors.black,
+              selected: _importance == Importance.high,
+              label: const Text(
+                'high',
+                style: TextStyle(color: Colors.white),
+              ),
+              onSelected: (selected) {
+                setState(() => _importance = Importance.high);
+              },
+            ),
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget buildDateField(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Date',
+              style: GoogleFonts.lato(fontSize: 28.0),
+            ),
+            TextButton(
+              child: const Text('Select'),
+              // 6
+              onPressed: () async {
+                final currentDate = DateTime.now();
+                // 7
+                final selectedDate = await showDatePicker(
+                  context: context,
+                  initialDate: currentDate,
+                  firstDate: currentDate,
+                  lastDate: DateTime(currentDate.year + 3),
+                );
+                setState(() {
+                  if (selectedDate != null) {
+                    _dueDate = selectedDate;
+                  }
+                });
+              },
+            ),
+          ],
+        ),
+        Text('${DateFormat('yyyy-MM-dd').format(_dueDate)}'),
+      ],
+    );
+  }
+
+  Widget buildTimeField(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Time of Day',
+              style: GoogleFonts.lato(fontSize: 28.0),
+            ),
+            TextButton(
+              onPressed: () async {
+                final timeOfDay = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                );
+
+                setState(() {
+                  if (timeOfDay != null) {
+                    _timeOfDay = timeOfDay;
+                  }
+                });
+              },
+              child: const Text('Select'),
+            ),
+          ],
+        ),
+        Text('${_timeOfDay.format(context)}'),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,10 +233,11 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            // TODO 13: Add name TextField
-            // TODO 14: Add Importance selection
-            // TODO 15: Add date picker
-            // TODO 16: Add time picker
+            buildNameField(),
+            SizedBox(height: 16),
+            buildImportanceField(),
+            buildDateField(context),
+            buildTimeField(context),
             // TODO 17: Add color picker
             // TODO 18: Add slider
             // TODO: 19: Add Grocery Tile
