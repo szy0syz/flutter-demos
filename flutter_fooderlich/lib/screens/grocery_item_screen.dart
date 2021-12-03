@@ -211,6 +211,53 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
     );
   }
 
+  Widget buildColorPicker(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 10.0,
+              height: 50.0,
+              color: _currentColor,
+            ),
+            const SizedBox(width: 8.0),
+            Text(
+              'Color',
+              style: GoogleFonts.lato(fontSize: 28.0),
+            ),
+          ],
+        ),
+        TextButton(
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: BlockPicker(
+                      pickerColor: Colors.white,
+                      onColorChanged: (color) {
+                        setState(() => _currentColor = color);
+                      },
+                    ),
+                    actions: [
+                      TextButton(
+                        child: const Text('Save'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                });
+          },
+          child: const Text('Select'),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -237,8 +284,10 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
             SizedBox(height: 16),
             buildImportanceField(),
             buildDateField(context),
+            SizedBox(height: 6),
             buildTimeField(context),
-            // TODO 17: Add color picker
+            SizedBox(height: 16),
+            buildColorPicker(context),
             // TODO 18: Add slider
             // TODO: 19: Add Grocery Tile
           ],
