@@ -644,3 +644,5 @@ Widget build(BuildContext context) {
   - Displays the correct page widget, based on the current tab index.
 
 ![003](preview/images/003.png)
+
+![004](preview/images/004.png)
