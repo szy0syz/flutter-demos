@@ -677,5 +677,15 @@ Navigator.push(
 - ↑ ↑ `imperative style`
 - But this uses the imperative style of navigation, known as Navigator 1.0. In this chapter, you’ll learn to navigate between screens the declarative way.
 - A stack is a data structure that manages pages. You insert the elements last-in, first- out (LIFO), and only the element at the top of the stack is visible to the user. `描述的很优美`
+- Before the release of Flutter 1.22, you could only shift between screens by issuing direct commands like “show this now” or “remove the current screen and go back to the previous one”. `·😂 有意思 😂·`
 
 ![005](preview/images/005.png)
+
+![006](preview/images/006.png)
+
+- `Navigator 2.0`
+- A user taps on a button.
+- The button handler tells the app state to update.
+- The router is a listener of the state, so it receives a notification when the state changes.
+- Based on the new state changes, the router reconfigures the list of pages for the navigator.
+- Navigator detects if there’s a new page in the list and handles the transitions to show the page.
