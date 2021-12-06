@@ -778,7 +778,7 @@ and pages.
 >
 > 既然是 Widget 的子类，那肯定要有 `Widget build() {}` 方法！
 >
-> 是的，既然在集中管理了，`pop` 时需要考虑的事情就很多
+> 是的，既然在集中管理了，`pop` 时需要考虑的事情就很多。到底能不能返回，看我的！
 
 ```dart
 bool _handlePopPage(Route<dynamic> route, result) {
@@ -792,3 +792,16 @@ bool _handlePopPage(Route<dynamic> route, result) {
   return true;
 }
 ```
+
+```dart
+return MaterialApp(
+  theme: theme,
+  title: 'Fooderlich',
+  home: Router(
+    routerDelegate: _appRouter,
+    // TODO: Add backButtonDispatcher
+  ),
+);
+```
+
+> 从此以后，渲染啥就呗代理精神小伙接管了。
