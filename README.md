@@ -646,3 +646,15 @@ Widget build(BuildContext context) {
 ![003](preview/images/003.png)
 
 ![004](preview/images/004.png)
+
+```dart
+return Dismissible(
+  key: Key(item.id),
+  direction: DismissDirection.endToStart,
+  onDismissed: (direction) {
+    manager.deleteItem(index);
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('${item.name} dismissed')));
+```
+
+- ⭐️ The dismissible widget includes a Key. Flutter needs this to find and remove the right element in the tree.
