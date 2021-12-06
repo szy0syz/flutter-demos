@@ -676,3 +676,6 @@ Navigator.push(
 
 - ↑ ↑ `imperative style`
 - But this uses the imperative style of navigation, known as Navigator 1.0. In this chapter, you’ll learn to navigate between screens the declarative way.
+- A stack is a data structure that manages pages. You insert the elements last-in, first- out (LIFO), and only the element at the top of the stack is visible to the user. `描述的很优美`
+
+![005](preview/images/005.png)
