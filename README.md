@@ -756,3 +756,5 @@ class AppStateManager extends ChangeNotifier {
 ```
 
 > 果真，代码不会骗人。
+>
+> 跪了 -> “事件驱动”
