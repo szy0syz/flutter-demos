@@ -658,3 +658,21 @@ return Dismissible(
 ```
 
 - ⭐️ The dismissible widget includes a Key. Flutter needs this to find and remove the right element in the tree.
+
+```dart
+Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => GroceryItemScreen(
+      onCreate: (item) {
+        manager.addItem(item);
+        Navigator.pop(context);
+      },
+      onUpdate: (item) {},
+    ),
+  ),
+);
+```
+
+- ↑ ↑ `imperative style`
+- But this uses the imperative style of navigation, known as Navigator 1.0. In this chapter, you’ll learn to navigate between screens the declarative way.

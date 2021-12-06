@@ -16,6 +16,7 @@ class Fooderlich extends StatelessWidget {
     return MaterialApp(
       theme: theme,
       title: 'Fooderlich',
+      debugShowCheckedModeBanner: false,
       home: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => TabManager()),
