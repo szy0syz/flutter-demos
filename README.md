@@ -696,7 +696,15 @@ class FooderlichTab {
   static const int recipes = 0;
   static const int toBuy = 0;
 }
+```
 
+> 写了 `AppStateManager` 有点感觉了，原来我们不再是原来 `1.0` 那种 `push/pop`，而是构建全局的 `AppState` 来驱动 `Router` 去配置 `Navigator` 来构建 `route`
+>
+> 不再是原来憨憨的 `教条式`
+>
+> 我晕，竟然又是 “事件驱动”，到了哪里都有老哥的 “身影” 😅
+
+```dart
 class AppStateManager extends ChangeNotifier {
   bool _initialized = false;
   bool _loggedIn = false;
@@ -707,9 +715,44 @@ class AppStateManager extends ChangeNotifier {
   bool get isLoggedIn => _loggedIn;
   bool get isOnboardingComplete => _onboardingComplete;
   int get getSelectedTab => _selectedTab;
+
+  void initializeApp() {
+    Timer(const Duration(milliseconds: 2000), () {
+      _initialized = true;
+      notifyListeners();
+    });
+  }
+
+  void login(String username, String password) {
+    _loggedIn = true;
+    notifyListeners();
+  }
+
+  void completeOnboarding() {
+    _onboardingComplete = true;
+    notifyListeners();
+  }
+
+  void goToTab(index) {
+    _selectedTab = index;
+    notifyListeners();
+  }
+
+  void goToRecipes() {
+    _selectedTab = FooderlichTab.recipes;
+    notifyListeners();
+  }
+
+  void logout() {
+    _loggedIn = false;
+    _onboardingComplete = false;
+    _initialized = false;
+    _selectedTab = 0;
+
+    initializeApp();
+    notifyListeners();
+  }
 }
 ```
 
-> 写了 `AppStateManager` 有点感觉了，原来我们不再是原来 `1.0` 那种 `push/pop`，而是构建全局的 `AppState` 来驱动 `Router` 去配置 `Navigator` 来构建 `route`
->
-> 不再是原来憨憨的 `教条式`
+> 果真，代码不会骗人。

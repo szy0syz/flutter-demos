@@ -18,10 +18,40 @@ class AppStateManager extends ChangeNotifier {
   bool get isOnboardingComplete => _onboardingComplete;
   int get getSelectedTab => _selectedTab;
 
-  // TODO: Add initializeApp
-  // TODO: Add login
-  // TODO: Add completeOnboarding
-  // TODO: Add goToTab
-  // TODO: Add goToRecipes
-  // TODO: Add logout
+  void initializeApp() {
+    Timer(const Duration(milliseconds: 2000), () {
+      _initialized = true;
+      notifyListeners();
+    });
+  }
+
+  void login(String username, String password) {
+    _loggedIn = true;
+    notifyListeners();
+  }
+
+  void completeOnboarding() {
+    _onboardingComplete = true;
+    notifyListeners();
+  }
+
+  void goToTab(index) {
+    _selectedTab = index;
+    notifyListeners();
+  }
+
+  void goToRecipes() {
+    _selectedTab = FooderlichTab.recipes;
+    notifyListeners();
+  }
+
+  void logout() {
+    _loggedIn = false;
+    _onboardingComplete = false;
+    _initialized = false;
+    _selectedTab = 0;
+
+    initializeApp();
+    notifyListeners();
+  }
 }
