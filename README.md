@@ -767,7 +767,7 @@ class AppStateManager extends ChangeNotifier {
 configure the navigator’s list of pages.
 4. Declares GroceryManager to listen to the user’s state when you create or edit an item.
 5. Declares ProfileManager to listen to the user profile state.
-6. RouterDelegate requires you to add a build(). This configures your navigator
+6. ⭐️[**划线**]⭐️ RouterDelegate requires you to add a build(). This configures your navigator
 and pages.
 7. Configures a Navigator.
 8. Uses the navigatorKey, which is required to retrieve the current navigator.
@@ -777,3 +777,18 @@ and pages.
 > 一种集中路由和事件驱动，有点总线的感觉。
 >
 > 既然是 Widget 的子类，那肯定要有 `Widget build() {}` 方法！
+>
+> 是的，既然在集中管理了，`pop` 时需要考虑的事情就很多
+
+```dart
+bool _handlePopPage(Route<dynamic> route, result) {
+  if (!route.didPop(result)) {
+    return false;
+  }
+  // TODO: Handle Onboarding and splash
+  // TODO: Handle state when user closes grocery item screen
+  // TODO: Handle state when user closes profile screen
+  // TODO: Handle state when user closes WebView screen
+  return true;
+}
+```
