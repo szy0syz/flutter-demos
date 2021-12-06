@@ -318,6 +318,12 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
                   _timeOfDay.minute,
                 ),
               );
+              // 提交数据
+              if (widget.isUpdating) {
+                widget.onUpdate(groceryItem);
+              } else {
+                widget.onCreate(groceryItem);
+              }
             },
           )
         ],

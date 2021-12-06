@@ -20,7 +20,6 @@ class GroceryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('item.color: ${item.color}');
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
