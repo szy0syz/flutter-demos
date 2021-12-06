@@ -689,3 +689,27 @@ Navigator.push(
 - The router is a listener of the state, so it receives a notification when the state changes.
 - Based on the new state changes, the router reconfigures the list of pages for the navigator.
 - Navigator detects if there’s a new page in the list and handles the transitions to show the page.
+
+```dart
+class FooderlichTab {
+  static const int explore = 0;
+  static const int recipes = 0;
+  static const int toBuy = 0;
+}
+
+class AppStateManager extends ChangeNotifier {
+  bool _initialized = false;
+  bool _loggedIn = false;
+  bool _onboardingComplete = false;
+  int _selectedTab = FooderlichTab.explore;
+
+  bool get isInitialized => _initialized;
+  bool get isLoggedIn => _loggedIn;
+  bool get isOnboardingComplete => _onboardingComplete;
+  int get getSelectedTab => _selectedTab;
+}
+```
+
+> 写了 `AppStateManager` 有点感觉了，原来我们不再是原来 `1.0` 那种 `push/pop`，而是构建全局的 `AppState` 来驱动 `Router` 去配置 `Navigator` 来构建 `route`
+>
+> 不再是原来憨憨的 `教条式`
