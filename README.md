@@ -758,3 +758,22 @@ class AppStateManager extends ChangeNotifier {
 > 果真，代码不会骗人。
 >
 > 跪了 -> “事件驱动”
+
+### router widget
+
+1. It extends RouterDelegate. The system will tell the router to build and configure a navigator widget.
+2. Declares GlobalKey, a unique key across the entire app.
+3. Declares AppStateManager. The router will listen to app state changes to
+configure the navigator’s list of pages.
+4. Declares GroceryManager to listen to the user’s state when you create or edit an item.
+5. Declares ProfileManager to listen to the user profile state.
+6. RouterDelegate requires you to add a build(). This configures your navigator
+and pages.
+7. Configures a Navigator.
+8. Uses the navigatorKey, which is required to retrieve the current navigator.
+9. Declares pages, the stack of pages that describes your navigation stack.
+10. Sets setNewRoutePath to null since you aren’t supporting Flutter web apps yet. Don’t worry about that for now, you’ll learn more about that topic in the next chapter.
+
+> 一种集中路由和事件驱动，有点总线的感觉。
+>
+> 既然是 Widget 的子类，那肯定要有 `Widget build() {}` 方法！
