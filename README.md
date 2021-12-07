@@ -807,3 +807,129 @@ return MaterialApp(
 > 从此以后，渲染啥就被代理人这个精神小伙接管。
 >
 > 说真的：“事件驱动”、“响应式编程” 大法真是好。🤘🤘🤘
+
+### declarative VS imperative
+
+> 指令式路由 VS 声明式路由
+>
+> 声明式路由逻辑真的完胜！
+
+```dart
+Widget build(BuildContext context) {
+  var index = getPageIndex(pages, routeStatus);
+
+  List<MaterialPage> tempPages = pages;
+  if (index != -1) {
+    // 要打开的页面在栈中已存在，则将该页面和它上面的所有页面进行出栈
+    // tips 具体规则可以根据需要进行调整，这里要求栈中只允许有一个同样的页面实例
+    tempPages = tempPages.sublist(0, index);
+  }
+
+  var page;
+  if (routeStatus == RouteStatus.home) {
+    // 跳转到首页时，需将栈中其他页面进行出栈，因为首页是不可回退的
+    pages.clear();
+    // page = pageWrap(HomePage());
+    page = pageWrap(BottomNavigator());
+  } else if (routeStatus == RouteStatus.darkMode) {
+    page = pageWrap(DarkModePage());
+  } else if (routeStatus == RouteStatus.detail) {
+    page = pageWrap(VideoDetailPage(videoModel!));
+  } else if (routeStatus == RouteStatus.registration) {
+    page = pageWrap(RegistrationPage());
+  } else if (routeStatus == RouteStatus.login) {
+    page = pageWrap(LoginPage());
+  }
+
+  // 重新创建一个数组，否则 pages 因引用没有改变理由不会生效
+  tempPages = [...tempPages, page];
+  pages = tempPages;
+
+  // fix: 修复Android物理按返回键，无法返回上一页的问题
+  return WillPopScope(
+    onWillPop: () async =>
+        !(await navigatorKey.currentState?.maybePop() ?? false),
+    child: Navigator(
+      key: navigatorKey,
+      pages: pages,
+      onPopPage: (route, result) {
+        // 如果没有登录，而又在登录页，此时就提示登录，不给返回
+        // 因为该APP必须登录后才能用
+        if (route.settings is MaterialPage) {
+          if ((route.settings as MaterialPage).child is LoginPage) {
+            if (!hasLogin) {
+              showWarnToast("请先登录");
+              return false;
+            }
+          }
+        }
+
+        // 在这里可以控制是否可以返回
+        if (!route.didPop(result)) {
+          return false;
+        }
+
+        // 如果返回了上一页，必须将路由栈出栈
+        // 因为栈是先进后出，第一个进栈的肯定压在最底下
+        // 所以要出栈最后一个入栈的路由
+        pages.removeLast();
+        // 没啥条件限制了，可以返回了
+        return true;
+      },
+    ),
+  );
+}
+```
+
+```dart
+class _HomeState extends State<Home> {
+  static List<Widget> pages = <Widget>[
+    ExploreScreen(),
+    RecipesScreen(),
+    const GroceryScreen(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<AppStateManager>(
+      builder: (context, appStateManager, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              'Fooderlich',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+            actions: [
+              profileButton(),
+            ],
+          ),
+          body: IndexedStack(index: widget.currentTab, children: pages),
+          bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor:
+                Theme.of(context).textSelectionTheme.selectionColor,
+            currentIndex: widget.currentTab,
+            onTap: (index) {
+              Provider.of<AppStateManager>(context, listen: false)
+                  .goToTab(index);
+            },
+            items: <BottomNavigationBarItem>[
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.explore),
+                label: 'Explore',
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.book),
+                label: 'Recipes',
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.list),
+                label: 'To Buy',
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+```
