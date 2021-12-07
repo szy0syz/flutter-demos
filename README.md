@@ -942,3 +942,8 @@ class _HomeState extends State<Home> {
 ![007](preview/images/007.jpeg)
 
 ![008](preview/images/008.png)
+
+- Types of deep links
+  - `URI schemes`: An app’s own URI scheme. `fooderlich://ray.com/home`
+  - `iOS Universal Links`: In the root of your web domain, you place a file that points to a specific app ID to know whether to open your app or to direct the user to the App Store.
+  - `Android App Links`: These are like iOS Universal Links, but for the Android platform.
