@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'app_link.dart';
 
 import '../models/models.dart';
 import '../screens/screens.dart';
 
-class AppRouter extends RouterDelegate //TODO: Add <AppLink>
+class AppRouter extends RouterDelegate<AppLink>
     with
         ChangeNotifier,
         PopNavigatorRouterDelegateMixin {
