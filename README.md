@@ -947,3 +947,44 @@ class _HomeState extends State<Home> {
   - `URI schemes`: An app’s own URI scheme. `fooderlich://ray.com/home`
   - `iOS Universal Links`: In the root of your web domain, you place a file that points to a specific app ID to know whether to open your app or to direct the user to the App Store.
   - `Android App Links`: These are like iOS Universal Links, but for the Android platform.
+
+#### Setting up deep links on iOS
+
+- `ios/Runner/Info.plist`
+  - CFBundleURLName is a unique URL that distinguishes your app from others that use the same scheme. fooderlich is the name of the URL scheme you’ll use later.
+
+```xml
+<key>FlutterDeepLinkingEnabled</key>
+<true/>
+<key>CFBundleURLTypes</key>
+<array>
+  <dict>
+  <key>CFBundleTypeRole</key>
+  <string>Editor</string>
+  <key>CFBundleURLName</key>
+  <string>raywenderlich.com</string>
+  <key>CFBundleURLSchemes</key>
+  <array>
+  <string>fooderlich</string>
+  </array>
+  </dict>
+</array>
+```
+
+#### Setting up deep links on Android
+
+- `android/app/src/main/AndroidManifest.xml`
+
+```xml
+<!-- Deep linking -->
+<meta-data android:name="flutter_deeplinking_enabled"
+android:value="true" />
+<intent-filter>
+<action android:name="android.intent.action.VIEW" />
+<category android:name="android.intent.category.DEFAULT" />
+<category android:name="android.intent.category.BROWSABLE" />
+<data
+  android:scheme="fooderlich"
+  android:host="raywenderlich.com" />
+</intent-filter>
+```
