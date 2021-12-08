@@ -5,9 +5,7 @@ import '../models/models.dart';
 import '../screens/screens.dart';
 
 class AppRouter extends RouterDelegate<AppLink>
-    with
-        ChangeNotifier,
-        PopNavigatorRouterDelegateMixin {
+    with ChangeNotifier, PopNavigatorRouterDelegateMixin {
   @override
   final GlobalKey<NavigatorState> navigatorKey;
 
@@ -95,11 +93,34 @@ class AppRouter extends RouterDelegate<AppLink>
     return true;
   }
 
-  // TODO: Convert app state to applink
+  // Convert app state to applink
 
   // TODO: Apply configuration helper
 
-  // TODO: Replace setNewRoutePath
+  // Replace setNewRoutePath
+  // You call setNewRoutePath() when a new route is pushed
   @override
-  Future<void> setNewRoutePath(configuration) async => null;
+  Future<void> setNewRoutePath(AppLink newLink) async {
+    switch (newLink.location) {
+      case AppLink.kProfilePath:
+        profileManager.tapOnProfile(true);
+        break;
+      case AppLink.kItemPath:
+        final itemId = newLink.itemId;
+        if (itemId != null) {
+          groceryManager.setSelectedGroceryItem(itemId);
+        } else {
+          groceryManager.createNewItem();
+        }
+        profileManager.tapOnProfile(false);
+        break;
+      case AppLink.kHomePath:
+        appStateManager.goToTab(newLink.currentTab ?? 0);
+        profileManager.tapOnProfile(false);
+        groceryManager.groceryItemTapped(-1);
+        break;
+      default:
+        break;
+    }
+  }
 }
