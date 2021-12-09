@@ -1005,7 +1005,11 @@ android:value="true" />
 
 ![011](preview/preview001.gif)
 
+> deep links 舒坦！
+>
 > 自此，三路全通。
 
 - 自动生成 `model`
 - `flutter pub run build_runner build`
+
+> `'package:flutter/services.dart'` 这个库属实有点强。

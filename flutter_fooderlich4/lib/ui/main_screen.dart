@@ -47,12 +47,11 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _onItemTapped(int index) {
-    print('old index: $_selectedIndex');
     setState(() {
       _selectedIndex = index;
     });
-    print('new index: $_selectedIndex');
-    //! 有这么快，不异步？
+    
+    //! 有这么快，竟然不异步！？
     saveCurrentIndex();
   }
 
