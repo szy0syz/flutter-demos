@@ -14,6 +14,7 @@ class AppLink {
   int? currentTab;
   // 5
   String? itemId;
+  
   // 6
   AppLink({
     this.location,
