@@ -28,7 +28,6 @@ class _RecipeListState extends State<RecipeList> {
 
   void getPreviousSearches() async {
     final prefs = await SharedPreferences.getInstance();
-    print('2222');
     if (prefs.containsKey(prefSearchKey)) {
       final searches = prefs.getStringList(prefSearchKey);
       if (searches != null) {
