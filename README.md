@@ -764,11 +764,11 @@ class AppStateManager extends ChangeNotifier {
 1. It extends RouterDelegate. The system will tell the router to build and configure a navigator widget.
 2. Declares GlobalKey, a unique key across the entire app.
 3. Declares AppStateManager. The router will listen to app state changes to
-configure the navigator’s list of pages.
+   configure the navigator’s list of pages.
 4. Declares GroceryManager to listen to the user’s state when you create or edit an item.
 5. Declares ProfileManager to listen to the user profile state.
 6. ⭐️[**划线**]⭐️ RouterDelegate requires you to add a build(). This configures your navigator
-and pages.
+   and pages.
 7. Configures a Navigator.
 8. Uses the navigatorKey, which is required to retrieve the current navigator.
 9. Declares pages, the stack of pages that describes your navigation stack.
@@ -1013,3 +1013,25 @@ android:value="true" />
 - `flutter pub run build_runner build`
 
 > `'package:flutter/services.dart'` 这个库属实有点强。
+
+### Chooper
+
+```dart
+// 1
+abstract class Result<T> {
+}
+// 2
+class Success<T> extends Result<T> {
+  final T value;
+  Success(this.value);
+}
+// 3
+class Error<T> extends Result<T> {
+  final Exception exception;
+  Error(this.exception);
+}
+```
+
+- Created an abstract class. It’s a simple blueprint for a result with a generic type T.
+- Created the Success class to extend Result and hold a value when the response is successful. This could hold JSON data, for example.
+- Created the Error class to extend Result and hold an exception. This will model errors that occur during an HTTP call, like using the wrong credentials or trying to fetch data without authorization.
