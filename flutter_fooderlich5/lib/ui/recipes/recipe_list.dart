@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../network/recipe_service.dart';
 import '../../network/recipe_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../colors.dart';
@@ -23,8 +24,9 @@ class _RecipeListState extends State<RecipeList> {
   late TextEditingController searchTextController;
   final ScrollController _scrollController = ScrollController();
 
-  // TODO: Replace with new API class
-  List currentSearchList = [];
+  // Replace with new API class
+  List<APIHits> currentSearchList = [];
+  // List currentSearchList = [];
   int currentCount = 0;
   int currentStartPosition = 0;
   int currentEndPosition = 20;
@@ -33,13 +35,13 @@ class _RecipeListState extends State<RecipeList> {
   bool loading = false;
   bool inErrorState = false;
   List<String> previousSearches = <String>[];
-  APIRecipeQuery? _currentRecipes1 = null;
+  // APIRecipeQuery? _currentRecipes1 = null;
 
   @override
   void initState() {
     super.initState();
-    // TODO: Remove call to loadRecipes()
-    loadRecipes();
+    // loadRecipes();
+
     getPreviousSearches();
     searchTextController = TextEditingController(text: '');
     _scrollController
@@ -63,15 +65,20 @@ class _RecipeListState extends State<RecipeList> {
       });
   }
 
-  // TODO: Add getRecipeData() here
+  Future<APIRecipeQuery> getRecipeData(String query, int from, int to) async {
+    final recipeJson = await RecipeService().getRecipes(query, from, to);
+    final recipeMap = json.decode(recipeJson);
 
-  // TODO: Delete loadRecipes()
-  Future loadRecipes() async {
-    final jsonString = await rootBundle.loadString('assets/recipes1.json');
-    setState(() {
-      _currentRecipes1 = APIRecipeQuery.fromJson(jsonDecode(jsonString));
-    });
+    return APIRecipeQuery.fromJson(recipeMap);
   }
+
+  // Delete loadRecipes()
+  // Future loadRecipes() async {
+  //   final jsonString = await rootBundle.loadString('assets/recipes1.json');
+  //   setState(() {
+  //     _currentRecipes1 = APIRecipeQuery.fromJson(jsonDecode(jsonString));
+  //   });
+  // }
 
   @override
   void dispose() {
@@ -148,6 +155,8 @@ class _RecipeListState extends State<RecipeList> {
                         previousSearches.add(value);
                         savePreviousSearches();
                       }
+                      //! 开始搜索
+                      startSearch(value);
                     },
                     controller: searchTextController,
                   )),
@@ -200,18 +209,72 @@ class _RecipeListState extends State<RecipeList> {
     });
   }
 
-  // TODO: Replace this _buildRecipeLoader definition
+  // Replace this _buildRecipeLoader definition
   Widget _buildRecipeLoader(BuildContext context) {
-    if (_currentRecipes1 == null || _currentRecipes1?.hits == null) {
+    //! 过滤掉少于等于3字符长度的关键字
+    if (searchTextController.text.length < 3) {
       return Container();
     }
-    // Show a loading indicator while waiting for the recipes
-    return Center(
-      child: _buildRecipeCard(context, _currentRecipes1!.hits, 0),
-    );
+
+    //! 异步我们就转圈圈等起
+    return FutureBuilder<APIRecipeQuery>(
+        future: getRecipeData(searchTextController.text.trim(),
+            currentStartPosition, currentEndPosition),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
+              return Center(
+                child: Text(
+                  snapshot.error.toString(),
+                  textAlign: TextAlign.center,
+                  textScaleFactor: 1.3,
+                ),
+              );
+            }
+
+            loading = false;
+            final query = snapshot.data;
+            inErrorState = false;
+            if (query != null) {
+              currentCount = query.count;
+              hasMore = query.more;
+              currentSearchList.addAll(query.hits);
+              // 8
+              if (query.to < currentEndPosition) {
+                currentEndPosition = query.to;
+              }
+            }
+            return _buildRecipeList(context, currentSearchList);
+          } else {
+            if (currentCount == 0) {
+              // Show a loading indicator while waiting for the recipes
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return _buildRecipeList(context, currentSearchList);
+            }
+          }
+        });
   }
 
-  // TODO: Add _buildRecipeList()
+  // Add _buildRecipeList()
+  Widget _buildRecipeList(BuildContext recipeListContext, List<APIHits> hits) {
+    final size = MediaQuery.of(context).size;
+    const itemHeight = 310;
+    final itemWidth = size.width / 2;
+    return Flexible(
+      child: GridView.builder(
+        controller: _scrollController,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: (itemWidth / itemHeight),
+        ),
+        itemCount: hits.length,
+        itemBuilder: (BuildContext context, int index) {
+          return _buildRecipeCard(recipeListContext, hits, index);
+        },
+      ),
+    );
+  }
 
   Widget _buildRecipeCard(
       BuildContext topLevelContext, List<APIHits> hits, int index) {
@@ -224,8 +287,8 @@ class _RecipeListState extends State<RecipeList> {
           },
         ));
       },
-      // TODO: Replace with recipeCard
-      child: recipeStringCard(recipe.image, recipe.label),
+      // Replace with recipeCard
+      child: recipeCard(recipe),
     );
   }
 }
