@@ -46,9 +46,11 @@ class _RecipeListState extends State<RecipeList> {
     searchTextController = TextEditingController(text: '');
     _scrollController
       ..addListener(() {
+        //! 因为每个卡片都设置了固定的高度，所以我们可以先求出到什么位置可以触发 fetch_more
         final triggerFetchMoreSize =
             0.7 * _scrollController.position.maxScrollExtent;
 
+        //! 然后就可以利用当前滚到到的高度和该触发高度比较即可
         if (_scrollController.position.pixels > triggerFetchMoreSize) {
           if (hasMore &&
               currentEndPosition < currentCount &&
