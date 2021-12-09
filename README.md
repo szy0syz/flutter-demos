@@ -992,3 +992,15 @@ android:value="true" />
 ![009](preview/images/009.png)
 
 ![010](preview/images/010.png)
+
+```bash
+~/Library/Android/sdk/platform-tools/adb shell am start -a android.intent.action.VIEW \
+-c android.intent.category.BROWSABLE \
+-d 'fooderlich://raywenderlich.com/home?tab=1'
+
+~/Library/Android/sdk/platform-tools/adb shell am start -a android.intent.action.VIEW \
+-c android.intent.category.BROWSABLE \
+-d 'fooderlich://raywenderlich.com/profile'
+```
+
+![011](preview/preview001.gif)
