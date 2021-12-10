@@ -1118,3 +1118,11 @@ static RecipeService create() {
 ```
 
 > 原来之前所做的一切，都在为它服务。
+
+### Deployment
+
+#### Platform Specific App Assets
+
+#### Build & Release an Android App
+
+#### Build & Release an iOS App
