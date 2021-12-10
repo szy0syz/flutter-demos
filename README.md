@@ -1117,6 +1117,14 @@ static RecipeService create() {
 }
 ```
 
+### State Management
+
+When you write apps and the amount of code gets larger and larger over time, you learn to appreciate the importance of separating code into manageable pieces. When files contain more than one class or classes combine multiple functionalities, it’s harder to fix bugs and add new features.
+
+One way to handle this is to follow `Clean Architecture` principles by organizing your project so it’s easy to change and understand. You do this by separating your code into separate directories and classes, with each class handling just one task. You also use interfaces to define contracts that different classes can implement, allowing you to easily swap in different classes or reuse classes in other apps.
+
+
+
 > 原来之前所做的一切，都在为它服务。
 
 ### Deployment
