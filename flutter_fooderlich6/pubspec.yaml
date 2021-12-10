@@ -30,7 +30,6 @@ dev_dependencies:
   chopper_generator: ^4.0.1
 
 flutter:
-
   uses-material-design: true
 
   assets:

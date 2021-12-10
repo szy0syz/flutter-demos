@@ -1035,3 +1035,20 @@ class Error<T> extends Result<T> {
 - Created an abstract class. It’s a simple blueprint for a result with a generic type T.
 - Created the Success class to extend Result and hold a value when the response is successful. This could hold JSON data, for example.
 - Created the Error class to extend Result and hold an exception. This will model errors that occur during an HTTP call, like using the wrong credentials or trying to fetch data without authorization.
+
+```dart
+@ChopperApi()
+abstract class RecipeService extends ChopperService {
+  @Get(path: 'search')
+  Future<Response<Result<APIRecipeQuery>>> queryRecipes(
+      @Query('q') String query,
+      @Query('from') int from,
+      @Query('to') int to);
+}
+```
+
+- `@ChopperApi()` 它会告诉 `Chopper` 帮我生成一个 `part` 文件。在当前场景中，会自动生成 `recipe_service.chopper.dart` 模板代码文件。
+- 注意📢 `RecipeService` 它只是一个 `抽象类` ，我们只需要定义一些方法签名就行，剩下的交给脚本跑模板代码即可，妥妥的 👌
+- `@Get`注解，我更喜欢叫他 `装饰器`，它会告诉装饰器这个方法是个 Get request ，然后也支持其他 HTTP Mthod，还有在方法参数前加的 `@Query` 装饰器可以省略我们自己手动拼接模板字符串，直接定义和拼接二合一了
+- 这个方法签名的泛型有点凶：`Future<Response<Result<APIRecipeQuery>>>`，当然这个也是返回的类型
+- 对了使用了注解还可以限制函数的输入类型，真是一举两得
