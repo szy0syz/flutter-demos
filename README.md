@@ -1050,5 +1050,71 @@ abstract class RecipeService extends ChopperService {
 - `@ChopperApi()` 它会告诉 `Chopper` 帮我生成一个 `part` 文件。在当前场景中，会自动生成 `recipe_service.chopper.dart` 模板代码文件。
 - 注意📢 `RecipeService` 它只是一个 `抽象类` ，我们只需要定义一些方法签名就行，剩下的交给脚本跑模板代码即可，妥妥的 👌
 - `@Get`注解，我更喜欢叫他 `装饰器`，它会告诉装饰器这个方法是个 Get request ，然后也支持其他 HTTP Mthod，还有在方法参数前加的 `@Query` 装饰器可以省略我们自己手动拼接模板字符串，直接定义和拼接二合一了
+  - `'$apiUrl?app_id=$apiId&app_key=$apiKey&q=$query&from=$from&to=$to');`
 - 这个方法签名的泛型有点凶：`Future<Response<Result<APIRecipeQuery>>>`，当然这个也是返回的类型
 - 对了使用了注解还可以限制函数的输入类型，真是一举两得
+
+```dart
+class ModelConverter implements Converter {
+  @override
+  Request convertRequest(Request request) {
+    final req = applyHeader(
+      request,
+      contentTypeKey,
+      jsonHeaders,
+      override: false,
+    );
+    return encodeJson(req);
+  }
+
+  Request encodeJson(Request request) {}
+  Response decodeJson<BodyType, InnerType>(Response response) {}
+
+  @override
+  Response<BodyType> convertResponse<BodyType, InnerType>(Response response) {}
+}
+```
+
+- 我们通过重写  Chopper Converter 的 `convertRequest` 抽象类，我们可以修改发送的请求头
+- 接收 request ，然后用 `applyHeader` 加工这个请求头再返回 `this` 链式调用
+
+```dart
+Response<BodyType> decodeJson<BodyType, InnerType>(Response response) {
+  final contentType = response.headers[contentTypeKey];
+  var body = response.body;
+  if (contentType != null && contentType.contains(jsonHeaders)) {
+    body = utf8.decode(response.bodyBytes);
+  }
+  try {
+    final mapData = json.decode(body);
+    if (mapData['status'] != null) {
+      return response.copyWith<BodyType>(
+          body: Error(Exception(mapData['status'])) as BodyType);
+    }
+    final recipeQuery = APIRecipeQuery.fromJson(mapData);
+    return response.copyWith<BodyType>(
+        body: Success(recipeQuery) as BodyType);
+  } catch (e) {
+    chopperLogger.warning(e);
+    return response.copyWith<BodyType>(
+        body: Error(e as Exception) as BodyType);
+  }
+}
+```
+
+```dart
+static RecipeService create() {
+  final client = ChopperClient(
+    baseUrl: apiUrl,
+    interceptors: [_addQuery, HttpLoggingInterceptor()],
+    converter: ModelConverter(),
+    errorConverter: const JsonConverter(),
+    services: [
+      _$RecipeService(),
+    ],
+  );
+  return _$RecipeService(client);
+}
+```
+
+> 原来之前所做的一切，都在为它服务。
