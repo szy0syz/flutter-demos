@@ -13,6 +13,7 @@ import '../../network/recipe_model.dart';
 import '../colors.dart';
 import '../recipe_card.dart';
 import '../recipes/recipe_details.dart';
+import '../../network/service_interface.dart';
 
 class RecipeList extends StatefulWidget {
   const RecipeList({Key? key}) : super(key: key);
@@ -195,8 +196,8 @@ class _RecipeListState extends State<RecipeList> {
       return Container();
     }
     return FutureBuilder<Response<Result<APIRecipeQuery>>>(
-      // TODO: replace with new interface
-      future: Provider.of<MockService>(context).queryRecipes(
+      // replace with new interface
+      future: Provider.of<ServiceInterface>(context).queryRecipes(
           searchTextController.text.trim(),
           currentStartPosition,
           currentEndPosition),
