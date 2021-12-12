@@ -83,6 +83,7 @@ class RecipeDetails extends StatelessWidget {
                     onPressed: () {
                       // Add insertRecipe here
                       repository.insertRecipe(recipe);
+                      Navigator.pop(context);
                     },
                     icon: SvgPicture.asset(
                       'assets/images/icon_bookmark.svg',

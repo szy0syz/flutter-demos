@@ -36,8 +36,8 @@ class MemoryRepository extends Repository with ChangeNotifier {
   // Add insert methods
   @override
   int insertRecipe(Recipe recipe) {
-    print('~~~~insertRecipe');
     _currentRecipes.add(recipe);
+    print('>> _currentRecipes.length: ${_currentRecipes.length}');
     if (recipe.ingredients != null) {
       insertIngredients(recipe.ingredients!);
     }
