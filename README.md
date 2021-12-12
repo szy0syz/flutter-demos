@@ -1133,6 +1133,16 @@ One way to handle this is to follow `Clean Architecture` principles by organizin
 
 ![013](preview/images/013.png)
 
+`StreanBuilder` 这个API的确很便捷，你更本不消去关心怎么关闭流，因为它会自动在 `Widget` 被销毁的时候关闭，而且也不用显示的去订阅什么，就可以直接构建视图。
+
+> `StreamBuilder` 和 `FutureBuilder` 里的 `snapshot` 快照这个概念挺有意思！
+
+我们将 `Provider` 里的内存数据仓储直接换成 `Stream` 玩玩 ↓ ↓ ↓
+
+![014](preview/images/014.png)
+
+> 看上去挺有意思！
+
 ### Deployment
 
 #### Platform Specific App Assets
